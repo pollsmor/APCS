@@ -39,4 +39,18 @@ public class recursion {
 
     return fibRec(n - 1, prev, prev2 + prev);
   }
+
+  public static ArrayList<Integer> makeAllSums(int n) {
+    ArrayList<Integer> list = new ArrayList();
+
+    if (n == 0) {
+      list.add(0);
+      list.add(1);
+      return list;
+    }
+
+    return allSumsRec(list, 2);
+  }
+
+  private static ArrayList<Integer> allSumsRec(int n, int s)
 }
