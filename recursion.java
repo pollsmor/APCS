@@ -5,19 +5,19 @@ public class recursion {
   }
 
   //Helper method
-  public static double sqrt(double n) {
+  public static double sqrt(double n, double tolerance) {
     if (n == 0) //hardcoded
       return 0;
 
-    return guess(n, 1); //initial guess is 1, can be whatever
+    return guess(n, 1, tolerance); //initial guess is 1, can be whatever
   }
 
-  public static double guess(double n, double guess) {
+  public static double guess(double n, double guess, double tolerance) {
     //Given percent error
-    if (percError(n, guess) < 0.001)
+    if (percError(n, guess) < tolerance)
       return guess;
 
     //Newton's method
-    return guess(n, (n / guess + guess) / 2);
+    return guess(n, (n / guess + guess) / 2, tolerance);
   }
 }
