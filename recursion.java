@@ -28,13 +28,14 @@ public class recursion {
       return n;
 
 
-    return fibRec(n, 0, 1);
+    return fibRec(n, 0, 1); //since the first 2 terms of the sequence are 0 and 1
   }
 
+  //store sums in prev2 and prev for easy access
   private static int fibRec(int n, int prev2, int prev) {
     //Base case
     if (n == 0)
-      return prev2;
+      return prev2; //prev2 here is the prev in the bottom statement so I return this
 
     return fibRec(n - 1, prev, prev2 + prev);
   }
