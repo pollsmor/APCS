@@ -25,14 +25,16 @@ public class recursion {
   public static int fib(int n) {
     //Hardcoded case
     if (n <= 1)
-      return 0;
+      return n;
 
-    return 1;
+    return fibRec(n, 0, 1);
   }
 
-  private static int fibRec(int n, int sum) {
+  private static int fibRec(int n, int prev2, int prev) {
     //Base case
     if (n == 0)
-      return sum;
+      return prev2 + prev;
+
+    return fibRec(n - 1, prev, prev2 + prev);
   }
 }

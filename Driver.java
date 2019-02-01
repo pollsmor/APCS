@@ -6,5 +6,11 @@ public class Driver {
     System.out.println(recursion.sqrt(10000, 0.00000001));
     System.out.println(recursion.sqrt(900, 0.0001));
     System.out.println(recursion.sqrt(0, 0.0001));
+
+    System.out.println("--------------------");
+
+    System.out.println(recursion.fib(0));
+    System.out.println(recursion.fib(1));
+    System.out.println(recursion.fib(2));
   }
 }
