@@ -23,14 +23,16 @@ public class recursion {
 
   //Helper method
   public static int fib(int n) {
-    //Base case
+    //Hardcoded case
     if (n <= 1)
       return 0;
 
-
+    return 1;
   }
 
   private static int fibRec(int n, int sum) {
-    
+    //Base case
+    if (n == 0)
+      return sum;
   }
 }
