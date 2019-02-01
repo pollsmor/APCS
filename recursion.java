@@ -21,9 +21,16 @@ public class recursion {
     return guess(n, (n / guess + guess) / 2, tolerance);
   }
 
+  //Helper method
   public static int fib(int n) {
     //Base case
     if (n <= 1)
-      return n;
+      return 0;
+
+
+  }
+
+  private static int fibRec(int n, int sum) {
+    
   }
 }
