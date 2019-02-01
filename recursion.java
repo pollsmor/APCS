@@ -20,4 +20,10 @@ public class recursion {
     //Newton's method
     return guess(n, (n / guess + guess) / 2, tolerance);
   }
+
+  public static int fib(int n) {
+    //Base case
+    if (n <= 1)
+      return n;
+  }
 }
