@@ -45,12 +45,16 @@ public class recursion {
 
     if (n == 0) {
       list.add(0);
-      list.add(1);
       return list;
     }
 
-    return allSumsRec(list, 2);
+    return allSumsRec(list, n, 2 ^ n);
   }
 
-  private static ArrayList<Integer> allSumsRec(int n, int s)
+  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int runs) {
+    if (runs == 0)
+      return list;
+
+    return allSumsRec(list, n, runs - 1);
+  }
 }
