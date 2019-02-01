@@ -12,5 +12,9 @@ public class Driver {
     System.out.println(recursion.fib(0));
     System.out.println(recursion.fib(1));
     System.out.println(recursion.fib(2));
+    System.out.println(recursion.fib(3));
+    System.out.println(recursion.fib(4));
+    System.out.println(recursion.fib(5));
+    System.out.println(recursion.fib(6));
   }
 }

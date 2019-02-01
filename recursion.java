@@ -27,13 +27,14 @@ public class recursion {
     if (n <= 1)
       return n;
 
+
     return fibRec(n, 0, 1);
   }
 
   private static int fibRec(int n, int prev2, int prev) {
     //Base case
     if (n == 0)
-      return prev2 + prev;
+      return prev2;
 
     return fibRec(n - 1, prev, prev2 + prev);
   }
