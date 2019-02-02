@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class recursion {
   private static double percError(double n, double guess) {
     //guess is the square root while n is the square itself, so I have to square the guess
@@ -41,34 +43,30 @@ public class recursion {
   }
 
   public static ArrayList<Integer> makeAllSums(int n) {
-    ArrayList<Integer> list = new ArrayList();
+    ArrayList<Integer> list = new ArrayList<Integer>();
 
     if (n == 0) {
       list.add(0);
       return list;
     }
 
-    return allSumsRec(list, n, 0, );
+    return allSumsRec(list, n, 1);
   }
 
-  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int start, int target) {
+  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int target) {
+    if (groupSum(0, n, target))
+      list.add(target);
+
+    return allSumsRec(list, n, target + 1);
+  }
+
+  public static boolean groupSum(int start, int n, int target) {
     if (target == 0)
-      list.add()
+      return true;
 
     else if (start >= n)
-      return list;
+      return false;
 
-    return allSumsRec(list, n, runs - 1);
+      return groupSum(start + 1, n, target - start) || groupSum(start + 1, n, target);
+    }
   }
-
-  public static boolean groupSum(int start, int[] nums, int target) {
-  if (target == 0)
-    return true;
-
-  else if (start >= nums.length)
-    return false;
-
-  return groupSum(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target);
-}
-
-}

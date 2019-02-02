@@ -17,5 +17,7 @@ public class Driver {
     System.out.println(recursion.fib(5));
     System.out.println(recursion.fib(6));
     System.out.println(recursion.fib(46)); //largest number without overflowing int
+
+    System.out.println("--------------------");
   }
 }
