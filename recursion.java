@@ -48,13 +48,27 @@ public class recursion {
       return list;
     }
 
-    return allSumsRec(list, n, 2 ^ n);
+    return allSumsRec(list, n, 0, );
   }
 
-  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int runs) {
-    if (runs == 0)
+  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int start, int target) {
+    if (target == 0)
+      list.add()
+
+    else if (start >= n)
       return list;
 
     return allSumsRec(list, n, runs - 1);
   }
+
+  public static boolean groupSum(int start, int[] nums, int target) {
+  if (target == 0)
+    return true;
+
+  else if (start >= nums.length)
+    return false;
+
+  return groupSum(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target);
+}
+
 }
