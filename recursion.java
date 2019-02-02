@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class recursion {
+public class Recursion {
   private static double percError(double n, double guess) {
     //guess is the square root while n is the square itself, so I have to square the guess
     return Math.abs((guess * guess - n) / n * 100);
@@ -50,30 +50,16 @@ public class recursion {
       return list;
     }
 
-    int[] nums = new int[n];
-    for (int i = 1; i <= n; ++i)
-      nums[i - 1] = i;
-
-    return allSumsRec(list, n, 1, nums);
+    return allSumsRec(list, n, 0, 0, 1);
   }
 
-  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int target, int[] nums) {
-    if (target >= n)
+  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int start, int sumA, int sumB) {
+    if (start >= n)
       return list;
 
-    if (groupSum(0, nums, target))
-      list.add(target);
+    list.add(sumA);
+    list.add(sumB);
 
-    return allSumsRec(list, n, target + 1, nums);
-  }
-
-  private static boolean groupSum(int start, int[] nums, int target) {
-    if (target == 0)
-      return true;
-
-    else if (start >= nums.length)
-      return false;
-
-    return groupSum(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target);
+    return allSumsRec(list, n, start + 1, sumA + start, sumB);
   }
 }
