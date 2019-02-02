@@ -50,13 +50,30 @@ public class recursion {
       return list;
     }
 
-    return allSumsRec(list, n, 1);
+    int[] nums = new int[n];
+    for (int i = 1; i <= n; ++i)
+      nums[i - 1] = i;
+
+    return allSumsRec(list, n, 1, nums);
   }
 
-  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int start) {
-    if (start >= n)
+  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int target, int[] nums) {
+    if (target >= n)
       return list;
 
-    return allSumsRec(list, n, start + 1);
+    if (groupSum(0, nums, target))
+      list.add(target);
+
+    return allSumsRec(list, n, target + 1, nums);
+  }
+
+  private static boolean groupSum(int start, int[] nums, int target) {
+    if (target == 0)
+      return true;
+
+    else if (start >= nums.length)
+      return false;
+
+    return groupSum(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target);
   }
 }
