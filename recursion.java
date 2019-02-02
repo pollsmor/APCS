@@ -45,28 +45,18 @@ public class recursion {
   public static ArrayList<Integer> makeAllSums(int n) {
     ArrayList<Integer> list = new ArrayList<Integer>();
 
+    //Hardcoded case
     if (n == 0) {
       list.add(0);
       return list;
     }
 
-    return allSumsRec(list, n, 1);
+    return allSumsRec(list, n, 0);
   }
 
-  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int target) {
-    if (groupSum(0, n, target))
-      list.add(target);
+  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int start) {
+    if
 
-    return allSumsRec(list, n, target + 1);
+    return allSumsRec(list, n, start + 1);
   }
-
-  public static boolean groupSum(int start, int n, int target) {
-    if (target == 0)
-      return true;
-
-    else if (start >= n)
-      return false;
-
-      return groupSum(start + 1, n, target - start) || groupSum(start + 1, n, target);
-    }
-  }
+}
