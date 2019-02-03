@@ -51,13 +51,19 @@ public class Recursion {
       return list;
     }
 
-    return allSumsRec(list, n, 0, 0);
+    allSumsRec(list, n, 0, 0);
+
+    return list;
   }
 
-  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int start, int sum) {
-    if (start > n)
-      return list;
+  private static void allSumsRec(ArrayList<Integer> list, int n, int current, int sum) {
+    if (current > n)
+      return;
 
-    return allSumsRec(list, n, start + 1, sum + start);
+    else if (current > 0)
+      list.add(sum);
+
+    allSumsRec(list, n, current + 1, sum + current + 1);
+    allSumsRec(list, n, current + 1, sum);
   }
 }
