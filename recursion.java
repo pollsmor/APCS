@@ -51,7 +51,9 @@ public class Recursion {
       return list;
     }
 
-    allSumsRec(list, n, n, 0);
+    allSumsRec(list, n, n, 0); //run void recursive function, won't exit it until recursion is done
+
+    //Code to remove dupes. Unfortunately also removes "valid" dupes.
     ArrayList<Integer> listOutput = new ArrayList<Integer>();
     for (int i = 0; i < list.size(); ++i)
       if (!listOutput.contains(list.get(i)))
@@ -61,10 +63,10 @@ public class Recursion {
   }
 
   private static void allSumsRec(ArrayList<Integer> list, int n, int current, int sum) {
-    if (current < 0)
+    if (current < 0) //Why not == 0? Because I still want the else if statement to be run one last time.
       return;
 
-    else if (current < n)
+    else if (current < n) //Why this? Because I don't want to add the initial sum I set in makeAllSums which is 0
       list.add(sum);
 
     allSumsRec(list, n, current - 1, sum + current);
