@@ -52,8 +52,12 @@ public class Recursion {
     }
 
     allSumsRec(list, n, n, 0);
+    ArrayList<Integer> listOutput = new ArrayList<Integer>();
+    for (int i = 0; i < list.size(); ++i)
+      if (!listOutput.contains(list.get(i)))
+        listOutput.add(list.get(i));
 
-    return list;
+    return listOutput;
   }
 
   private static void allSumsRec(ArrayList<Integer> list, int n, int current, int sum) {
