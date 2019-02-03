@@ -44,22 +44,20 @@ public class Recursion {
 
   public static ArrayList<Integer> makeAllSums(int n) {
     ArrayList<Integer> list = new ArrayList<Integer>();
+
     //Hardcoded case
     if (n == 0) {
       list.add(0);
       return list;
     }
 
-    return allSumsRec(list, n, 0, 0, 1);
+    return allSumsRec(list, n, 0, 0);
   }
 
-  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int start, int sumA, int sumB) {
-    if (start >= n)
+  private static ArrayList<Integer> allSumsRec(ArrayList<Integer> list, int n, int start, int sum) {
+    if (start > n)
       return list;
 
-    list.add(sumA);
-    list.add(sumB);
-
-    return allSumsRec(list, n, start + 1, sumA + start, sumB);
+    return allSumsRec(list, n, start + 1, sum + start);
   }
 }
