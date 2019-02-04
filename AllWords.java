@@ -12,6 +12,9 @@ public class AllWords {
     if (k == 0)
       return;
 
-    
+    list.add(word);
+
+    for (int i = 97; i <= 97 + k; ++i)
+      allWordsRec(k - 1, word + (char)i, list);
   }
 }
