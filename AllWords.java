@@ -9,6 +9,9 @@ public class AllWords {
   }
 
   private static void allWordsRec(int k, String word, List<String> list) {
+    if (k == 0)
+      return;
 
+    
   }
 }
