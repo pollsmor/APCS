@@ -9,13 +9,13 @@ public class AllWords {
   }
 
   private static void allWordsRec(int k, String word, List<String> list) {
-    if (k == 0)
+    if (k == -1)
       return;
 
-    if (!word.equals(""))
+    if (!word.equals("") && word.length == )
       list.add(word);
 
-    for (int i = 97; i <= 97 + k; ++i)
+    for (int i = 97; i <= 97 + k ; ++i)
       allWordsRec(k - 1, word + (char)i, list);
   }
 }
