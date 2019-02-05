@@ -58,7 +58,7 @@ public class Recursion {
       if (!listOutput.contains(list.get(i)))
         listOutput.add(list.get(i));
 
-    return listOutput;
+    return list;
   }
 
   private static void allSumsRec(ArrayList<Integer> list, int n, int current, int sum) {

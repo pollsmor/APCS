@@ -6,5 +6,6 @@ public class Driver {
     System.out.println("Input 2: " + Recursion.makeAllSums(2));
     System.out.println("Input 3: " + Recursion.makeAllSums(3));
     System.out.println("Input 4: " + Recursion.makeAllSums(4));
+    System.out.println("Input 4: " + Recursion.makeAllSums(5));
   }
 }
