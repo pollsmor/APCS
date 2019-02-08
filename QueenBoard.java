@@ -16,9 +16,10 @@ public class QueenBoard {
         ++board[j][c];
 
       //Top left to bottom right
+      int k2 = 0;
       for (int k = 0; k < board.length; ++k) { //board.length still works since the diagonal length is also the length/width
-        for (int k2 = k; k2 < board[k].length; ++k2)
           ++board[k][k2];
+          ++k2;
       }
 
       board[r][c] = -1;
