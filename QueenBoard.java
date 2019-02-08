@@ -16,12 +16,16 @@ public class QueenBoard {
         ++board[j][c];
 
       //Top left to bottom right
-      int k2 = 0;
-      for (int k = 0; k < board.length; ++k) { //board.length still works since the diagonal length is also the length/width
-          ++board[k][k2];
-          ++k2;
-      }
+      for (int k = 0; k < board.length; ++k) //board.length still works since the diagonal length is also the length/width
+          ++board[k][k];
 
+
+      //Top right to bottom left
+      //for (int m = board.length - 1; m >= 0; --m) {
+        //++board[m][m];
+      //}
+
+      //Set this at the end after all the threatening is done
       board[r][c] = -1;
       return true;
     }
