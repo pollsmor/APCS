@@ -33,6 +33,8 @@ public class QueenBoard {
         else
           output += "_ ";
       }
+
+      output += '\n';
     }
 
     return output;
