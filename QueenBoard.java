@@ -15,6 +15,8 @@ public class QueenBoard {
       for (int j = 0; j < board.length; ++j)
         ++board[j][c];
 
+        //Note to self: fill in both directions for diagonal from queen
+
       //Top left to bottom right
       for (int k = 0; k < board.length; ++k) //board.length still works since the diagonal length is also the length/width
           ++board[k][k];
