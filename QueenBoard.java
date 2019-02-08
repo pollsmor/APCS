@@ -61,4 +61,17 @@ public class QueenBoard {
 
     return output;
   }
+
+  public int countSolutions() {
+    int queensOnBoard = 0;
+    for (int i = 0; i < board.length; ++i)
+      for (int j = 0; j < board.length; ++j)
+        if (board[i][j] == - 1)
+          ++queensOnBoard;
+
+    if (queensOnBoard == board.length)
+      return 1;
+
+    return 0;
+  }
 }
