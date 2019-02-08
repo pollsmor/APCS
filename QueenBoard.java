@@ -7,11 +7,20 @@ public class QueenBoard {
 
   public boolean addQueen(int r, int c) {
     if (board[r][c] != -1) {
+      //Left to right
       for (int i = 0; i < board[r].length; ++i)
         ++board[r][i];
 
+      //Top to bottom
       for (int j = 0; j < board.length; ++j)
         ++board[j][c];
+
+      //Top left to bottom right
+      for (int k = 0; k < board.length; ++k) { //board.length still works since the diagonal length is also the length/width
+        for (int k2 = k; k2 < board[k].length; ++k2)
+          ++board[k][k2];
+      }
+
       board[r][c] = -1;
       return true;
     }
