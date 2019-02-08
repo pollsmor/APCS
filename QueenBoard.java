@@ -7,6 +7,11 @@ public class QueenBoard {
 
   public boolean addQueen(int r, int c) {
     if (board[r][c] != -1) {
+      for (int i = 0; i < board[r].length; ++i)
+        ++board[r][i];
+
+      for (int j = 0; j < board.length; ++j)
+        ++board[j][c];
       board[r][c] = -1;
       return true;
     }
@@ -31,7 +36,7 @@ public class QueenBoard {
           output += "Q ";
 
         else
-          output += "_ ";
+          output += board[i][j] + " ";
       }
 
       output += '\n';
