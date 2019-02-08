@@ -19,11 +19,12 @@ public class QueenBoard {
       for (int k = 0; k < board.length; ++k) //board.length still works since the diagonal length is also the length/width
           ++board[k][k];
 
-
       //Top right to bottom left
-      //for (int m = board.length - 1; m >= 0; --m) {
-        //++board[m][m];
-      //}
+      int mRow = 0; //start from top which is row 0
+      for (int m = board.length - 1; m >= 0; --m) {
+        ++board[mRow][m];
+        ++mRow;
+      }
 
       //Set this at the end after all the threatening is done
       board[r][c] = -1;
