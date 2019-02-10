@@ -28,6 +28,9 @@ public class QueenBoard {
 
         if (c - i >= 0) //left
           ++board[r][c - i];
+
+        if (r + i < board.length && c - i >= 0) //bottom left
+          ++board[r + i][c - i];
       }
 
       board[r][c] = -1;
