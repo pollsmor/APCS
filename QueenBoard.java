@@ -109,31 +109,21 @@ public class QueenBoard {
   }
 
   public boolean solveRec(int row, int col) {
-    if (row >= board.length) {
-      int amtQueens = 0;
-      for (int i = 0; i < board.length; ++i)
-        for (int j = 0; j < board.length; ++j)
-          if (board[i][j] == -1)
-            ++amtQueens;
-
-      if (amtQueens != board.length) {
-        clearBoard();
-        return false;
-      }
-
+    if (row == board.length)
       return true;
-    }
 
-    int amtQueens = 0;
-    for (int i = 0; i < board.length; ++i)
+    if (!addQueen(row, col))
+      return false;
 
-    if (col >= board.length)
-      return solveRec(row + 1, col);
+    for (int colLoop = 0; colLoop < board.length; ++colLoop)
+      return solveRec(row, colLoop);
 
-    return solveRec(row, col + 1);
+    return false;
   }
 
   public int countSolutions() {
+    if (board.length == 2 || board.length == 3)
+      return 0;
 
     int solutions = 0;
     for (int i = 0; i < board.length; ++i)
