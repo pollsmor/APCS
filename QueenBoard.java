@@ -23,8 +23,11 @@ public class QueenBoard {
         if (r != 0) //top
           ++board[r - i][c];
 
-        if (r - i >= 0 && c - i >= 0)
+        if (r - i >= 0 && c - i >= 0) //top left
           ++board[r - i][c - i];
+
+        if (c - i >= 0) //left
+          ++board[r][c - i];
       }
 
       board[r][c] = -1;
