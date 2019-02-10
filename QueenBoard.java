@@ -92,6 +92,15 @@ public class QueenBoard {
     return output;
   }
 
+  public boolean solve() {
+    for (int i = 0; i < board.length; ++i)
+      for (int j = 0; j < board.length; ++j)
+        if (board[i][j] != 0)
+          throw new IllegalStateException("The board must start with all zeros.");
+
+    return true;
+  }
+
   public int countSolutions() {
     int queensOnBoard = 0;
     for (int i = 0; i < board.length; ++i)
