@@ -7,28 +7,16 @@ public class QueenBoard {
 
   public boolean addQueen(int r, int c) {
     if (board[r][c] != -1) {
-      //Left to right
-      for (int i = 0; i < board[r].length; ++i)
-        ++board[r][i];
+      for (int i = 1; i <= board.length - r; ++i) {
+        if (r != 0)
+          ++board[r - i][c + i];
 
-      //Top to bottom
-      for (int j = 0; j < board.length; ++j)
-        ++board[j][c];
+        ++board[r][c + i];
 
-        //Note to self: fill in both directions for diagonal from queen
-
-      //Top left to bottom right
-      for (int k = 0; k < board.length; ++k) //board.length still works since the diagonal length is also the length/width
-          ++board[k][k];
-
-      //Top right to bottom left
-      int mRow = 0; //start from top which is row 0
-      for (int m = board.length - 1; m >= 0; --m) {
-        ++board[mRow][m];
-        ++mRow;
+        if (r + i < board.length && c + i < board.length)
+          ++board[r + i][c + i];
       }
 
-      //Set this at the end after all the threatening is done
       board[r][c] = -1;
       return true;
     }
