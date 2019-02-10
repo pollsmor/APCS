@@ -11,7 +11,8 @@ public class QueenBoard {
         if (r != 0)
           ++board[r - i][c + i];
 
-        ++board[r][c + i];
+        if (c + i < board.length)
+          ++board[r][c + i];
 
         if (r + i < board.length && c + i < board.length)
           ++board[r + i][c + i];
