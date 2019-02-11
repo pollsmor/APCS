@@ -141,8 +141,7 @@ public class QueenBoard {
     if (board.length == 2 || board.length == 3)
       return 0;
 
-    if (!isEmpty())
-      throw new IllegalStateException("The board must start with all zeros.");
+    clearBoard();
 
     return 1;
   }
