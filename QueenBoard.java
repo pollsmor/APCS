@@ -40,6 +40,7 @@ public class QueenBoard {
     return false;
   }
 
+  //Same as addQueens but backwards
   private boolean removeQueen(int r, int c) {
     if (board[r][c] == -1) {
       for (int i = 1; i <= board.length - r; ++i) {
@@ -92,6 +93,7 @@ public class QueenBoard {
     return output;
   }
 
+  //Wrapper functuion for solveRec
   public boolean solve() {
     if (!isEmpty())
       throw new IllegalStateException("The board must start with all zeros.");
@@ -115,6 +117,7 @@ public class QueenBoard {
   }
 
   public boolean solveRec(int col) {
+    //If it reaches the amt. of columns, then there is n amount of queens on the board
     if (col >= board.length)
       return true;
 
@@ -123,11 +126,12 @@ public class QueenBoard {
         if (solveRec(col + 1))
           return true;
 
-        removeQueen(row, col);
+        removeQueen(row, col); //won't find a solution with previous col + 1, so discard queen at col + 1
       }
     }
 
-    return false;
+    return false; //for the n-queens problem you must have a queen on every column. 
+                  //if the for loop gets exhausted before returning true it is unsolvable in its current state.
   }
 
   public int countSolutions() {
