@@ -141,8 +141,9 @@ public class QueenBoard {
     if (board.length == 2 || board.length == 3)
       return 0;
 
+    int solutions = cSolutionsRec(0);
     clearBoard();
-    return cSolutionsRec(0);
+    return solutions;
   }
 
   public int cSolutionsRec(int col) {
