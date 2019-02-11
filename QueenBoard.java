@@ -151,7 +151,7 @@ public class QueenBoard {
       return 1;
 
     int count = 0;
-    for (int row = 0; row < board.length; ++col)
+    for (int row = 0; row < board.length; ++row)
       if (addQueen(row, col)) {
         count += cSolutionsRec(col + 1);
         removeQueen(row, col);
