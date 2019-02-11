@@ -147,7 +147,7 @@ public class QueenBoard {
 
   public int cSolutionsRec(int col) {
     //Like solveRec
-    if (col >= board.length) {
+    if (col >= board.length && !duplicates.contains(board)) {
       duplicates.add(board);
       return 1;
     }
