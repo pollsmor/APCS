@@ -129,6 +129,8 @@ public class QueenBoard {
   }
 
   public int countSolutions() {
+    clearBoard();
+    
     if (board[0][0] != 0)
       throw new IllegalStateException("The board must start with all zeros.");
 
