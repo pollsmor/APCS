@@ -138,7 +138,10 @@ public class QueenBoard {
   }
 
   public int countSolutions() {
-    if (board.length == 2 || board.length == 3)
+    if (!isEmpty())
+      throw new IllegalStateException("The board must start with all zeros.");
+
+    if (board.length == 0 || board.length == 2 || board.length == 3)
       return 0;
 
     int solutions = cSolutionsRec(0);
@@ -152,11 +155,12 @@ public class QueenBoard {
       return 1;
 
     int count = 0;
-    for (int row = 0; row < board.length; ++row)
+    for (int row = 0; row < board.length; ++row) {
       if (addQueen(row, col)) {
         count += cSolutionsRec(col + 1);
         removeQueen(row, col);
       }
+    }
 
     return count;
   }
