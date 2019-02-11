@@ -3,7 +3,6 @@ public class QueenBoard {
 
   public QueenBoard(int size) {
     board = new int[size][size];
-    solve();
   }
 
   public boolean addQueen(int r, int c) {
@@ -102,6 +101,15 @@ public class QueenBoard {
     return solveRec(0, 0);
   }
 
+  private boolean isEmpty() {
+    for (int i = 0; i < board.length; ++i)
+      for (int j = 0; j < board.length; ++j)
+        if (board[i][j] != 0)
+          return false;
+
+    return true;
+  }
+
   private void clearBoard() {
     for (int i = 0; i < board.length; ++i)
       for (int j = 0; j < board.length; ++j)
@@ -109,31 +117,22 @@ public class QueenBoard {
   }
 
   public boolean solveRec(int row, int col) {
-    if (row == board.length)
+    if (col == board.length)
       return true;
 
-    if (!addQueen(row, col))
-      return false;
+    if (board[row][col] == 0)
+      addQueen(row, col);
 
-    for (int colLoop = 0; colLoop < board.length; ++colLoop)
-      return solveRec(row, colLoop);
-
-    return false;
+    return true;
   }
 
   public int countSolutions() {
     if (board.length == 2 || board.length == 3)
       return 0;
 
-    int solutions = 0;
-    for (int i = 0; i < board.length; ++i)
-      for (int j = 0; j < board.length; ++j)
-        if (board[i][j] != 0)
-          throw new IllegalStateException("The board must start with all zeros.");
+    if (!isEmpty())
+      throw new IllegalStateException("The board must start with all zeros.");
 
-    if (solve())
-      ++solutions;
-
-    return solutions;
+    return 1;
   }
 }
