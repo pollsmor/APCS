@@ -95,11 +95,11 @@ public class QueenBoard {
 
   //Wrapper functuion for solveRec
   public boolean solve() {
+    if (board.length == 0 || board.length == 2 || board.length == 3)
+      return false;
+
     if (board[0][0] != 0)
       throw new IllegalStateException("The board must start with all zeros.");
-
-    if (board.length == 2 || board.length == 3)
-      return false;
 
     return solveRec(0);
   }
@@ -129,13 +129,13 @@ public class QueenBoard {
   }
 
   public int countSolutions() {
-    clearBoard();
-    
-    if (board[0][0] != 0)
-      throw new IllegalStateException("The board must start with all zeros.");
-
     if (board.length == 0 || board.length == 2 || board.length == 3)
       return 0;
+
+    clearBoard();
+
+    if (board[0][0] != 0)
+      throw new IllegalStateException("The board must start with all zeros.");
 
     int solutions = cSolutionsRec(0);
     clearBoard();
