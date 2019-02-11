@@ -98,6 +98,9 @@ public class QueenBoard {
     if (!isEmpty())
       throw new IllegalStateException("The board must start with all zeros.");
 
+    if (board.length == 2 || board.length == 3)
+      return false;
+
     return solveRec(0);
   }
 
@@ -130,7 +133,7 @@ public class QueenBoard {
       }
     }
 
-    return false; //for the n-queens problem you must have a queen on every column. 
+    return false; //for the n-queens problem you must have a queen on every column.
                   //if the for loop gets exhausted before returning true it is unsolvable in its current state.
   }
 
