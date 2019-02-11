@@ -1,5 +1,8 @@
+import java.util.ArrayList;
+
 public class QueenBoard {
   private int[][] board;
+  private ArrayList<int[][]> duplicates = new ArrayList<int[][]>();
 
   public QueenBoard(int size) {
     board = new int[size][size];
@@ -144,8 +147,10 @@ public class QueenBoard {
 
   public int cSolutionsRec(int col) {
     //Like solveRec
-    if (col >= board.length)
+    if (col >= board.length) {
+      duplicates.add(board);
       return 1;
+    }
 
     int count = 0;
     for (int row = 0; row < board.length; ++row) {
