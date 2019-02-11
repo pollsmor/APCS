@@ -3,5 +3,6 @@ public class Driver {
     QueenBoard test = new QueenBoard(4);
     test.solve();
     System.out.println(test);
+    System.out.println(test.countSolutions());
   }
 }

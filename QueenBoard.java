@@ -142,7 +142,21 @@ public class QueenBoard {
       return 0;
 
     clearBoard();
+    return cSolutionsRec(0);
+  }
 
-    return 1;
+  public int cSolutionsRec(int col) {
+    //Like solveRec
+    if (col >= board.length)
+      return 1;
+
+    int count = 0;
+    for (int row = 0; row < board.length; ++col)
+      if (addQueen(row, col)) {
+        count += cSolutionsRec(col + 1);
+        removeQueen(row, col);
+      }
+
+    return count;
   }
 }
