@@ -137,7 +137,7 @@ public class QueenBoard {
     if (board.length == 0) //thanks Ethan for reminding me that technically 0x0 does have 1 solution
       return 1;
 
-    if (board.length == 2 || board.length == 3)
+    if (board.length == 2 || board.length == 3) //no solutions for 2x2 or 3x3 board
       return 0;
 
     clearBoard();
