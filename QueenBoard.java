@@ -115,7 +115,7 @@ public class QueenBoard {
         board[i][j] = 0;
   }
 
-  public boolean solveRec(int col) {
+  private boolean solveRec(int col) {
     //If it reaches the amt. of columns, then there is n amount of queens on the board
     if (col >= board.length)
       return true;
@@ -146,11 +146,11 @@ public class QueenBoard {
       throw new IllegalStateException("The board must start with all zeros.");
 
     int solutions = cSolutionsRec(0);
-    clearBoard();
+    clearBoard(); //directions want the board to be cleaned after finding all solutions
     return solutions;
   }
 
-  public int cSolutionsRec(int col) {
+  private int cSolutionsRec(int col) {
     //Like solveRec
     if (col >= board.length)
       return 1;
