@@ -9,7 +9,7 @@ public class QueenBoard {
 
   private boolean addQueen(int r, int c) {
     if (board[r][c] == 0) {
-      for (int i = 1; i <= board.length - c; ++i) {
+      for (int i = 1; i <= board.length - c; ++i) { //line, how dare you steal 30 minutes of my sleep.
         if (r - i >= 0 && c + i < board.length) //top right
           ++board[r - i][c + i];
 
@@ -164,8 +164,6 @@ public class QueenBoard {
 
       removeQueen(row, col);
     }
-
-
 
     return count;
   }
