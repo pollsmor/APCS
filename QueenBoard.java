@@ -9,7 +9,7 @@ public class QueenBoard {
 
   private boolean addQueen(int r, int c) {
     if (board[r][c] == 0) {
-      for (int i = 1; i <= board.length - r; ++i) {
+      for (int i = 1; i <= board.length - c; ++i) {
         if (r - i >= 0 && c + i < board.length) //top right
           ++board[r - i][c + i];
 
@@ -43,9 +43,9 @@ public class QueenBoard {
   }
 
   //Same as addQueens but backwards
-  private boolean removeQueen(int r, int c) {
+  public boolean removeQueen(int r, int c) {
     if (board[r][c] == -1) {
-      for (int i = 1; i <= board.length - r; ++i) {
+      for (int i = 1; i <= board.length - c; ++i) {
         if (r - i >= 0 && c + i < board.length) //top right
           --board[r - i][c + i];
 
@@ -159,9 +159,13 @@ public class QueenBoard {
     for (int row = 0; row < board.length; ++row) {
       if (addQueen(row, col)) {
         count += cSolutionsRec(col + 1);
-        removeQueen(row, col);
+        //removeQueen(row, col);
       }
+
+      removeQueen(row, col);
     }
+
+
 
     return count;
   }
