@@ -98,7 +98,10 @@ public class QueenBoard {
 
   //Wrapper functuion for solveRec
   public boolean solve() {
-    if (board.length == 0 || board.length == 2 || board.length == 3)
+    if (board.length == 0) //thanks Ethan for reminding me that technically 0x0 does have 1 solution
+      return true;
+
+    if (board.length == 2 || board.length == 3)
       return false;
 
     if (board[0][0] != 0)
@@ -132,7 +135,10 @@ public class QueenBoard {
   }
 
   public int countSolutions() {
-    if (board.length == 0 || board.length == 2 || board.length == 3)
+    if (board.length == 0) //thanks Ethan for reminding me that technically 0x0 does have 1 solution
+      return 1;
+
+    if (board.length == 2 || board.length == 3)
       return 0;
 
     clearBoard();
