@@ -140,8 +140,6 @@ public class QueenBoard {
     if (board.length == 2 || board.length == 3) //no solutions for 2x2 or 3x3 board
       return 0;
 
-    clearBoard();
-
     if (board[0][0] != 0)
       throw new IllegalStateException("The board must start with all zeros.");
 
