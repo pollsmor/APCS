@@ -26,6 +26,8 @@ public class KnightBoard {
 
     if (startingRow <= 0 || startingRow >= m_rows || startingCol <= 0 || startingCol >= m_cols)
       throw new IllegalArgumentException("You can't start out of bounds.");
+
+    return solveH(startingRow, startingCol, 1);
   }
 
   private boolean solveH(int row, int col, int moveNumber) {
