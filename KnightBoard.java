@@ -2,6 +2,8 @@ public class KnightBoard {
   private int[][] board;
   private int rows;
   private int cols;
+  private int row;
+  private int col;
 
   public KnightBoard(int startingRows, int startingCols) {
     if (startingRows <= 0 || startingCols <= 0)
