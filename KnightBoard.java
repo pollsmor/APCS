@@ -20,6 +20,8 @@ public class KnightBoard {
     return output;
   }
 
+  public boolean knightMove()
+
   public boolean solve(int startingRow, int startingCol) {
     if (board[0][0] != 0)
       throw new IllegalStateException("The board must be empty before you're allowed to do this.");
