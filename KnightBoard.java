@@ -23,5 +23,6 @@ public class KnightBoard {
 
     String output = "";
 
+    return output;
   }
 }
