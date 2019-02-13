@@ -18,6 +18,9 @@ public class KnightBoard {
     if (board[0][0] != 0)
       throw new IllegalStateException("The board must be empty before you're allowed to do this.");
 
+    if (row <= 0 || row >= rows || col <= 0 || col >= cols)
+      throw new IllegalArgumentException("You can't go out of bounds.");
+
     String output = "";
 
   }
