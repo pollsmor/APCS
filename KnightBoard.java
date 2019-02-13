@@ -11,4 +11,12 @@ public class KnightBoard {
     cols = startingCols;
     board = new int[rows][cols];
   }
+
+  public String toString() {
+    if (board[0][0] != 0)
+      throw new IllegalStateException("The board must be empty before you're allowed to do this.");
+
+    String output = "";
+
+  }
 }
