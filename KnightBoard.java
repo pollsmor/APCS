@@ -31,6 +31,9 @@ public class KnightBoard {
   }
 
   private boolean solveH(int row, int col, int moveNumber) {
+    if (moveNumber >= m_rows * m_cols)
+      return true;
+
     return true;
   }
 }
