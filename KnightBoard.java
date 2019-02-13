@@ -6,7 +6,7 @@ public class KnightBoard {
   private int m_col;
 
   public KnightBoard(int rows, int cols) {
-    if (startingRows <= 0 || startingCols <= 0)
+    if (rows <= 0 || cols <= 0)
       throw new IllegalArgumentException("It's not a board if it has <= 0 rows or cols.");
 
     m_rows = rows;
@@ -15,16 +15,20 @@ public class KnightBoard {
   }
 
   public String toString() {
-    if (board[0][0] != 0)
-      throw new IllegalStateException("The board must be empty before you're allowed to do this.");
-
-    if (m_row <= 0 || m_row >= m_rows || m_col <= 0 || m_col >= m_cols)
-      throw new IllegalArgumentException("You can't go out of bounds.");
-
     String output = "";
 
     return output;
   }
 
-  public boolean solve(int startingRow, )
+  public boolean solve(int startingRow, int startingCol) {
+    if (board[0][0] != 0)
+      throw new IllegalStateException("The board must be empty before you're allowed to do this.");
+
+    if (startingRow <= 0 || startingRow >= m_rows || startingCol <= 0 || startingCol >= m_cols)
+      throw new IllegalArgumentException("You can't start out of bounds.");
+  }
+
+  private boolean solveH(int row, int col, int moveNumber) {
+    return true;
+  }
 }
