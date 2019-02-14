@@ -22,7 +22,7 @@ public class KnightBoard {
         for (int j = 0; j < m_cols; ++j)
           output += " " + board[i][j] + " ";
 
-        System.out.println();
+        output += '\n';
       }
     }
 
@@ -32,9 +32,12 @@ public class KnightBoard {
           if (board[i][j] < 10)
             output += "_" + board[i][j] + " ";
 
+
           else
             output += board[i][j] + " ";
         }
+
+        output += '\n';
       }
     }
 
@@ -45,7 +48,7 @@ public class KnightBoard {
     if (board[0][0] != 0)
       throw new IllegalStateException("The board must be empty before you're allowed to do this.");
 
-    if (startingRow <= 0 || startingRow >= m_rows || startingCol <= 0 || startingCol >= m_cols)
+    if (startingRow < 0 || startingRow >= m_rows || startingCol < 0 || startingCol >= m_cols)
       throw new IllegalArgumentException("You can't start out of bounds.");
 
     return solveH(startingRow, startingCol, 1);
