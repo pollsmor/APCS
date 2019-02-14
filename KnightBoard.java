@@ -20,8 +20,6 @@ public class KnightBoard {
     return output;
   }
 
-  public boolean knightMove()
-
   public boolean solve(int startingRow, int startingCol) {
     if (board[0][0] != 0)
       throw new IllegalStateException("The board must be empty before you're allowed to do this.");
@@ -36,6 +34,21 @@ public class KnightBoard {
     if (moveNumber >= m_rows * m_cols)
       return true;
 
-    return true;
+    if (row < 0 || row >= m_rows || col < 0 || col >= m_rows)
+      return false;
+
+    if (board[row][col] != 0)
+      return false;
+
+    board[row][col] = moveNumber;
+
+    return solveH(row + 2, col + 1, moveNumber + 1) ||
+           solveH(row + 2, col - 1, moveNumber + 1) ||
+           solveH(row - 2, col + 1, moveNumber + 1) ||
+           solveH(row - 2, col - 1, moveNumber + 1) ||
+           solveH(row + 1, col + 2, moveNumber + 1) ||
+           solveH(row + 1, col - 2, moveNumber + 1) ||
+           solveH(row - 1, col + 2, moveNumber + 1) ||
+           solveH(row - 1, col - 2, moveNumber + 1);
   }
 }
