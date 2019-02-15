@@ -64,15 +64,23 @@ public class KnightBoard {
   }
 
   private boolean solveH(int row, int col, int moveNumber) {
-    if (moveNumber >= m_rows * m_cols)
-      return true;
+    if (row < 0 || row >= m_rows || col < 0 || col >= m_cols)
+      return false;
 
     if (board[row][col] != 0)
       return false;
 
-    if (row < 0 || row >= m_rows || col < 0 || col >= m_cols)
-      return false;
+    if (moveNumber >= m_rows * m_cols)
+      return true;
 
-    return true;
+    board[row][col] = moveNumber;
+
+    int[][] moves = { {1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1} };
+
+    for (int i = 0; i < 8; ++i)
+      if (solveH(row + moves[i][0], col + moves[i][1], moveNumber + 1))
+        return true;
+
+    return false;
   }
 }
