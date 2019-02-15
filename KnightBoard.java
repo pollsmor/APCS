@@ -70,6 +70,9 @@ public class KnightBoard {
     if (board[row][col] != 0)
       return false;
 
+    if (row < 0 || row >= m_rows || col < 0 || col >= m_cols)
+      return false;
+
     return true;
   }
 }
