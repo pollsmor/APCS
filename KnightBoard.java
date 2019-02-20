@@ -53,6 +53,13 @@ public class KnightBoard {
     return true;
   }
 
+  private void changeLast() {
+    for (int row = 0; row < m_rows; ++row)
+      for (int col = 0; col < m_cols; ++col)
+        if (board[row][col] == 0)
+          board[row][col] = m_rows * m_cols;
+  }
+
   public boolean solve(int startingRow, int startingCol) {
     if (!isEmpty())
       throw new IllegalStateException("The board must be empty before you're allowed to do this.");
@@ -61,10 +68,7 @@ public class KnightBoard {
       throw new IllegalArgumentException("You can't start out of bounds.");
 
     boolean returnVal = solveH(startingRow, startingCol, 1);
-    for (int row = 0; row < m_rows; ++row)
-      for (int col = 0; col < m_cols; ++col)
-        if (board[row][col] == 0)
-          board[row][col] = m_rows * m_cols;
+    changeLast();
 
     return returnVal;
   }
