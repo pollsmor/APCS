@@ -60,7 +60,13 @@ public class KnightBoard {
     if (startingRow < 0 || startingRow >= m_rows || startingCol < 0 || startingCol >= m_cols)
       throw new IllegalArgumentException("You can't start out of bounds.");
 
-    return solveH(startingRow, startingCol, 1);
+    boolean returnVal = solveH(startingRow, startingCol, 1);
+    for (int row = 0; row < m_rows; ++row)
+      for (int col = 0; col < m_cols; ++col)
+        if (board[row][col] == 0)
+          board[row][col] = m_rows * m_cols;
+
+    return returnVal;
   }
 
   private boolean solveH(int row, int col, int moveNumber) {
@@ -81,7 +87,7 @@ public class KnightBoard {
       if (solveH(row + moves[i][0], col + moves[i][1], moveNumber + 1))
         return true;
 
-      board[row][col] = 0;
+    board[row][col] = 0;
 
     return false;
   }
