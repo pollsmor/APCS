@@ -17,6 +17,17 @@ public class KnightBoard {
   public String toString() {
     String output = "";
 
+    if (isEmpty()) {
+      for (int i = 0; i < m_rows; ++i) {
+        for (int j = 0; j < m_cols; ++j)
+          output += "_ ";
+
+        output += '\n';
+      }
+
+      return output;
+    }
+
     if (m_rows * m_cols < 10) {
       for (int i = 0; i < m_rows; ++i) {
         for (int j = 0; j < m_cols; ++j)
