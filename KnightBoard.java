@@ -81,6 +81,8 @@ public class KnightBoard {
       if (solveH(row + moves[i][0], col + moves[i][1], moveNumber + 1))
         return true;
 
+      board[row][col] = 0;
+
     return false;
   }
 }
