@@ -2,8 +2,6 @@ public class KnightBoard {
   private int[][] board;
   private int m_rows;
   private int m_cols;
-  private int m_row;
-  private int m_col;
 
   public KnightBoard(int rows, int cols) {
     if (rows <= 0 || cols <= 0)
@@ -11,12 +9,13 @@ public class KnightBoard {
 
     m_rows = rows;
     m_cols = cols;
-    board = new int[m_rows][m_cols];
+    board = new int[m_rows][m_cols]; //sets everything to a value of 0
   }
 
   public String toString() {
     String output = "";
 
+    //Print a bunch of underscores if board is empty/unsolvable
     if (isEmpty()) {
       for (int i = 0; i < m_rows; ++i) {
         for (int j = 0; j < m_cols; ++j)
@@ -28,6 +27,7 @@ public class KnightBoard {
       return output;
     }
 
+    //Prints in a suitable way for small boards
     if (m_rows * m_cols < 10) {
       for (int i = 0; i < m_rows; ++i) {
         for (int j = 0; j < m_cols; ++j)
@@ -64,6 +64,7 @@ public class KnightBoard {
     return true;
   }
 
+  //Changes last value to the correct value, used in solve
   private void changeLast() {
     for (int row = 0; row < m_rows; ++row)
       for (int col = 0; col < m_cols; ++col)
@@ -78,20 +79,20 @@ public class KnightBoard {
     if (startingRow < 0 || startingRow >= m_rows || startingCol < 0 || startingCol >= m_cols)
       throw new IllegalArgumentException("You can't start out of bounds.");
 
-    boolean returnVal = solveH(startingRow, startingCol, 1);
+    boolean returnVal = solveH(startingRow, startingCol, 1); //change stuff first
     changeLast();
 
-    return returnVal;
+    return returnVal; //return stuff after changeLast();
   }
 
   private boolean solveH(int row, int col, int moveNumber) {
-    if (row < 0 || row >= m_rows || col < 0 || col >= m_cols)
+    if (row < 0 || row >= m_rows || col < 0 || col >= m_cols) //if a move goes out of bounds, it's not possible
       return false;
 
-    if (board[row][col] != 0)
+    if (board[row][col] != 0) //if a move backtracks, it's not possible
       return false;
 
-    if (moveNumber >= m_rows * m_cols)
+    if (moveNumber >= m_rows * m_cols) //Every moveNumber has been reached, done
       return true;
 
     board[row][col] = moveNumber;
@@ -102,7 +103,7 @@ public class KnightBoard {
       if (solveH(row + moves[i][0], col + moves[i][1], moveNumber + 1))
         return true;
 
-    board[row][col] = 0;
+    board[row][col] = 0; //remove knight and try a new location because the entire 8 directions were tried in the for loop and didn't work
 
     return false;
   }
