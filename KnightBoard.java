@@ -2,6 +2,7 @@ public class KnightBoard {
   private int[][] board;
   private int m_rows;
   private int m_cols;
+  private int[][] outgoingMoves;
 
   public KnightBoard(int rows, int cols) {
     if (rows <= 0 || cols <= 0)
@@ -10,6 +11,14 @@ public class KnightBoard {
     m_rows = rows;
     m_cols = cols;
     board = new int[m_rows][m_cols]; //sets everything to a value of 0
+
+    outgoingMoves = new int[m_rows][m_cols];
+    for (int row = 0; row < m_rows; ++row) {
+      for (int col = 0; col < m_cols; ++col) {
+        if (row - 2 >= 0 && row + 2 <= m_rows)
+          outgoingMoves[row][col] = 8;
+      }
+    }
   }
 
   public String toString() {
@@ -50,6 +59,19 @@ public class KnightBoard {
 
         output += '\n';
       }
+    }
+
+    return output;
+  }
+
+  public String toStringMoves() {
+    String output = "";
+
+    for (int i = 0; i < m_rows; ++i) {
+      for (int j = 0; j < m_cols; ++j)
+        output += outgoingMoves[i][j] + " ";
+
+      output += '\n';
     }
 
     return output;
