@@ -107,4 +107,26 @@ public class KnightBoard {
 
     return false;
   }
+
+  private void clearBoard() {
+    for (int i = 0; i < m_rows; ++i)
+      for (int j = 0; j < m_cols; ++j)
+        board[i][j] = 0;
+  }
+
+  public int countSolutions(int startingRow, int startingCol) {
+    if (!isEmpty())
+      throw new IllegalStateException("The board must be empty before you're allowed to do this.");
+
+    if (startingRow < 0 || startingRow >= m_rows || startingCol < 0 || startingCol >= m_cols)
+      throw new IllegalArgumentException("You can't start out of bounds.");
+
+    int solutions = cSolutionsH(startingRow, startingCol, 1);
+    clearBoard();
+    return solutions;
+  }
+
+  private int cSolutionsH(int row, int col, int moveNumber) {
+    return 1;
+  }
 }
