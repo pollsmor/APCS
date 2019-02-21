@@ -1,6 +1,6 @@
 public class Driver {
   public static void main(String[] args) {
-    KnightBoard test = new KnightBoard(5, 5);
+    KnightBoard test = new KnightBoard(7, 7);
 
     //test.solve(0, 0);
 
