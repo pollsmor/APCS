@@ -17,6 +17,9 @@ public class KnightBoard {
       for (int col = 0; col < m_cols; ++col) {
         if (row - 2 >= 0 && row + 2 < m_rows && col - 2 >= 0 && col + 2 < m_cols)
           outgoingMoves[row][col] = 8;
+
+        else if ((row == 0 && col == 0) || (row == 0 && col == m_cols - 1) || (row == m_rows - 1 && col == 0) || (row == m_rows - 1 && col == m_cols - 1))
+          outgoingMoves[row][col] = 2;
       }
     }
   }
