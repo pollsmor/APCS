@@ -127,6 +127,25 @@ public class KnightBoard {
   }
 
   private int cSolutionsH(int row, int col, int moveNumber) {
-    return 1;
+    if (row < 0 || row >= m_rows || col < 0 || col >= m_cols) //if a move goes out of bounds, it's not possible
+      return 0;
+
+    if (board[row][col] != 0) //if a move backtracks, it's not possible
+      return 0;
+
+    if (moveNumber >= m_rows * m_cols) //Every moveNumber has been reached, done
+      return 1;
+
+    board[row][col] = moveNumber;
+
+    int[][] moves = { {1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1} };
+
+    int count = 0;
+    for (int i = 0; i < 8; ++i)
+      count += cSolutionsH(row + moves[i][0], col + moves[i][1], moveNumber + 1);
+
+    board[row][col] = 0; //remove knight and try a new location because the entire 8 directions were tried in the for loop and didn't work
+
+    return count;
   }
 }
