@@ -148,17 +148,17 @@ public class KnightBoard {
       moves.add(arr);
     }
 
-    if (row + 1 < m_rows && col - 2 < m_cols) {
+    if (row + 1 < m_rows && col - 2 >= 0) {
       int[] arr = {1, -2, outgoingMoves[row + 1][col - 2]};
       moves.add(arr);
     }
 
-    if (row - 1 < m_rows && col + 2 < m_cols) {
+    if (row - 1 >= 0 && col + 2 < m_cols) {
       int[] arr = {-1, 2, outgoingMoves[row - 1][col + 2]};
       moves.add(arr);
     }
 
-    if (row - 1 < m_rows && col - 2 < m_cols) {
+    if (row - 1 >= 0 && col - 2 >= 0) {
       int[] arr = {-1, -2, outgoingMoves[row - 1][col - 2]};
       moves.add(arr);
     }
@@ -168,17 +168,17 @@ public class KnightBoard {
       moves.add(arr);
     }
 
-    if (row + 2 < m_rows && col - 1 < m_cols) {
+    if (row + 2 < m_rows && col - 1 >= 0) {
       int[] arr = {2, -1, outgoingMoves[row + 2][col - 1]};
       moves.add(arr);
     }
 
-    if (row - 2 < m_rows && col + 1 < m_cols) {
+    if (row - 2 >= 0 && col + 1 < m_cols) {
       int[] arr = {-2, 1, outgoingMoves[row - 2][col + 1]};
       moves.add(arr);
     }
 
-    if (row - 2 < m_rows && col - 1 < m_cols) {
+    if (row - 2 >= 0 && col - 1 >= 0) {
       int[] arr = {-2, -1, outgoingMoves[row - 2][col - 1]};
       moves.add(arr);
     }
