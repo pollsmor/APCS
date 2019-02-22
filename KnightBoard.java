@@ -13,6 +13,10 @@ public class KnightBoard {
     board = new int[m_rows][m_cols]; //sets everything to a value of 0
 
     outgoingMoves = new int[m_rows][m_cols];
+    genMoves();
+  }
+
+  private void genMoves() {
     for (int row = 0; row < m_rows; ++row) {
       for (int col = 0; col < m_cols; ++col) {
         if (row - 2 >= 0 && row + 2 < m_rows && col - 2 >= 0 && col + 2 < m_cols)
