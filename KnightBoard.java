@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class KnightBoard {
   private int[][] board;
@@ -182,7 +184,16 @@ public class KnightBoard {
       int[] arr = {-2, -1, outgoingMoves[row - 2][col - 1]};
       moves.add(arr);
     }
-    //int[][] moves = { {1, 2, outgoingMoves[row + 1][col + 2]}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1} };
+
+    //I had no clue how to do the sorting. This StackOverflow post helped a good deal: https://stackoverflow.com/questions/9150446/compareto-with-primitives-integer-int
+    Collections.sort(moves, new Comparator<int[]>() {
+      public int compare(int[] a, int[] b) {
+        if (a[2] < b[2])
+          return 1;
+
+        return -1;
+      }
+    });
 
     for (int i = 0; i < moves.size(); ++i)
       if (solveH(row + moves.get(i)[0], col + moves.get(i)[1], moveNumber + 1))
