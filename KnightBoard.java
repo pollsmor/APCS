@@ -278,7 +278,7 @@ public class KnightBoard {
     //I had no clue how to do the sorting. This StackOverflow post helped a good deal: https://stackoverflow.com/questions/9150446/compareto-with-primitives-integer-int
     Collections.sort(moves, new Comparator<int[]>() {
       public int compare(int[] a, int[] b) {
-        if (a[2] < b[2])
+        if (a[2] > b[2])
           return 1;
 
         return -1;
@@ -287,8 +287,8 @@ public class KnightBoard {
 
     int count = 0;
     for (int i = 0; i < moves.size(); ++i) {
-      count += cSolutionsH(row + moves.get(i)[0], col + moves.get(i)[1], moveNumber + 1);
       --outgoingMoves[row][col];
+      count += cSolutionsH(row + moves.get(i)[0], col + moves.get(i)[1], moveNumber + 1);
     }
 
     board[row][col] = 0; //remove knight and try a new location because the entire 8 directions were tried in the for loop and didn't work
