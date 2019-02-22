@@ -7,7 +7,7 @@ public class KnightBoard {
   private int[][] board;
   private int m_rows;
   private int m_cols;
-  private int[][] outgoingMoves;
+  private int[][] outgoingMoves; //for optimization
 
   public KnightBoard(int rows, int cols) {
     if (rows <= 0 || cols <= 0)
@@ -18,7 +18,7 @@ public class KnightBoard {
     board = new int[m_rows][m_cols]; //sets everything to a value of 0
 
     outgoingMoves = new int[m_rows][m_cols];
-    genMoves();
+    genMoves(); //fill in moves board
   }
 
   private void genMoves() {
@@ -188,16 +188,19 @@ public class KnightBoard {
     //I had no clue how to do the sorting. This StackOverflow post helped a good deal: https://stackoverflow.com/questions/9150446/compareto-with-primitives-integer-int
     Collections.sort(moves, new Comparator<int[]>() {
       public int compare(int[] a, int[] b) {
-        if (a[2] < b[2])
+        if (a[2] > b[2])
           return 1;
 
         return -1;
       }
     });
 
-    for (int i = 0; i < moves.size(); ++i)
+    for (int i = 0; i < moves.size(); ++i) {
+      --outgoingMoves[row][col];
+
       if (solveH(row + moves.get(i)[0], col + moves.get(i)[1], moveNumber + 1))
         return true;
+    }
 
     board[row][col] = 0; //remove knight and try a new location because the entire 8 directions were tried in the for loop and didn't work
 
@@ -282,9 +285,11 @@ public class KnightBoard {
       }
     });
 
-    int count =0;
-    for (int i = 0; i < moves.size(); ++i)
+    int count = 0;
+    for (int i = 0; i < moves.size(); ++i) {
       count += cSolutionsH(row + moves.get(i)[0], col + moves.get(i)[1], moveNumber + 1);
+      --outgoingMoves[row][col];
+    }
 
     board[row][col] = 0; //remove knight and try a new location because the entire 8 directions were tried in the for loop and didn't work
 
