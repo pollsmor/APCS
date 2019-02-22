@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class KnightBoard {
   private int[][] board;
   private int m_rows;
@@ -139,10 +142,50 @@ public class KnightBoard {
 
     board[row][col] = moveNumber;
 
-    int[][] moves = { {1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1} };
+    ArrayList<int[]> moves = new ArrayList<int[]>();
+    if (row + 1 < m_rows && col + 2 < m_cols) {
+      int[] arr = {1, 2, outgoingMoves[row + 1][col + 2]};
+      moves.add(arr);
+    }
 
-    for (int i = 0; i < 8; ++i)
-      if (solveH(row + moves[i][0], col + moves[i][1], moveNumber + 1))
+    if (row + 1 < m_rows && col - 2 < m_cols) {
+      int[] arr = {1, -2, outgoingMoves[row + 1][col - 2]};
+      moves.add(arr);
+    }
+
+    if (row - 1 < m_rows && col + 2 < m_cols) {
+      int[] arr = {-1, 2, outgoingMoves[row - 1][col + 2]};
+      moves.add(arr);
+    }
+
+    if (row - 1 < m_rows && col - 2 < m_cols) {
+      int[] arr = {-1, -2, outgoingMoves[row - 1][col - 2]};
+      moves.add(arr);
+    }
+
+    if (row + 2 < m_rows && col + 1 < m_cols) {
+      int[] arr = {2, 1, outgoingMoves[row + 2][col + 1]};
+      moves.add(arr);
+    }
+
+    if (row + 2 < m_rows && col - 1 < m_cols) {
+      int[] arr = {2, -1, outgoingMoves[row + 2][col - 1]};
+      moves.add(arr);
+    }
+
+    if (row - 2 < m_rows && col + 1 < m_cols) {
+      int[] arr = {-2, 1, outgoingMoves[row - 2][col + 1]};
+      moves.add(arr);
+    }
+
+    if (row - 2 < m_rows && col - 1 < m_cols) {
+      int[] arr = {-2, -1, outgoingMoves[row - 2][col - 1]};
+      moves.add(arr);
+    }
+    //int[][] moves = { {1, 2, outgoingMoves[row + 1][col + 2]}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1} };
+
+    for (int i = 0; i < moves.size(); ++i)
+      if (solveH(row + moves.get(i)[0], col + moves.get(i)[1], moveNumber + 1))
         return true;
 
     board[row][col] = 0; //remove knight and try a new location because the entire 8 directions were tried in the for loop and didn't work
