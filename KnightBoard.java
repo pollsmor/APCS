@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -21,25 +20,31 @@ public class KnightBoard {
     genMoves(); //fill in moves board
   }
 
+  //Generates an array that shows how many outgoing moves there are.
   private void genMoves() {
     for (int row = 0; row < m_rows; ++row) {
       for (int col = 0; col < m_cols; ++col) {
+        //8 is for anything > 2 blocks from the edge
         if (row - 2 >= 0 && row + 2 < m_rows && col - 2 >= 0 && col + 2 < m_cols)
           outgoingMoves[row][col] = 8;
 
+        //2 is for the four corners of the board
         else if ((row == 0 && col == 0) || (row == 0 && col == m_cols - 1) || (row == m_rows - 1 && col == 0) || (row == m_rows - 1 && col == m_cols - 1))
           outgoingMoves[row][col] = 2;
 
+        //3 is for the 8 blocks surrounding the 2s
         else if ((row == 1 && col == 0) || (row == 1 && col == m_cols - 1) || (row == m_rows - 2 && col == 0) || (row == m_rows - 2 && col == m_cols - 1) ||
                  (col == 1 && row == 0) || (col == m_cols - 2 && row == 0) || (col == 1 && row == m_rows - 1) || (col == m_cols - 2 && row == m_rows - 1))
           outgoingMoves[row][col] = 3;
 
+        //6 surrounds the 8s
         else if ((row == 1 || row == m_rows - 2) && (col - 2 >= 0 && col + 2 < m_cols))
           outgoingMoves[row][col] = 6;
 
         else if ((col == 1 || col == m_rows - 2) && (row - 2 >= 0 && row + 2 < m_rows))
           outgoingMoves[row][col] = 6;
 
+        //Couldn't think of an algorithm for 4, leave it for last
         else
           outgoingMoves[row][col] = 4;
       }
@@ -89,7 +94,7 @@ public class KnightBoard {
     return output;
   }
 
-  public String toStringMoves() {
+  public String toStringMoves() { //for debugging
     String output = "";
 
     for (int i = 0; i < m_rows; ++i) {
@@ -130,7 +135,7 @@ public class KnightBoard {
     changeLast();
 
     if (!returnVal)
-      clearBoard();
+      clearBoard(); //since no solution was found
 
     return returnVal; //return stuff after changeLast();
   }
@@ -144,6 +149,7 @@ public class KnightBoard {
 
     board[row][col] = moveNumber;
 
+    //Make list of possible moves along with how many outgoing moves there are, for optimization
     ArrayList<int[]> moves = new ArrayList<int[]>();
     if (row + 1 < m_rows && col + 2 < m_cols) {
       int[] arr = {1, 2, outgoingMoves[row + 1][col + 2]};
@@ -185,7 +191,7 @@ public class KnightBoard {
       moves.add(arr);
     }
 
-    //I had no clue how to do the sorting. This StackOverflow post helped a good deal: https://stackoverflow.com/questions/9150446/compareto-with-primitives-integer-int
+    //I had no clue how to do the sorting by amount of outgoing moves by myself. This StackOverflow post helped a good deal: https://stackoverflow.com/questions/9150446/compareto-with-primitives-integer-int
     Collections.sort(moves, new Comparator<int[]>() {
       public int compare(int[] a, int[] b) {
         if (a[2] > b[2])
@@ -204,7 +210,7 @@ public class KnightBoard {
 
     board[row][col] = 0; //remove knight and try a new location because the entire 8 directions were tried in the for loop and didn't work
 
-    return false;
+    return false; //no solution on this path
   }
 
   private void clearBoard() {
@@ -275,7 +281,6 @@ public class KnightBoard {
       moves.add(arr);
     }
 
-    //I had no clue how to do the sorting. This StackOverflow post helped a good deal: https://stackoverflow.com/questions/9150446/compareto-with-primitives-integer-int
     Collections.sort(moves, new Comparator<int[]>() {
       public int compare(int[] a, int[] b) {
         if (a[2] > b[2])
