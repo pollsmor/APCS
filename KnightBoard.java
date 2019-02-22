@@ -129,6 +129,9 @@ public class KnightBoard {
     boolean returnVal = solveH(startingRow, startingCol, 1); //change stuff first
     changeLast();
 
+    if (!returnVal)
+      clearBoard();
+
     return returnVal; //return stuff after changeLast();
   }
 
