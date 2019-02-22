@@ -24,6 +24,15 @@ public class KnightBoard {
         else if ((row == 1 && col == 0) || (row == 1 && col == m_cols - 1) || (row == m_rows - 2 && col == 0) || (row == m_rows - 2 && col == m_cols - 1) ||
                  (col == 1 && row == 0) || (col == m_cols - 2 && row == 0) || (col == 1 && row == m_rows - 1) || (col == m_cols - 2 && row == m_rows - 1))
           outgoingMoves[row][col] = 3;
+
+        else if ((row == 1 || row == m_rows - 2) && (col - 2 >= 0 && col + 2 < m_cols))
+          outgoingMoves[row][col] = 6;
+
+        else if ((col == 1 || col == m_rows - 2) && (row - 2 >= 0 && row + 2 < m_rows))
+          outgoingMoves[row][col] = 6;
+
+        else
+          outgoingMoves[row][col] = 4;
       }
     }
   }
