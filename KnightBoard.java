@@ -232,6 +232,9 @@ public class KnightBoard {
   }
 
   private int cSolutionsH(int row, int col, int moveNumber) {
+    if (row < 0 || row >= m_rows || col < 0 || col >= m_cols) //if a move goes out of bounds, it's not possible
+      return 0;
+
     if (board[row][col] != 0) //if a move backtracks, it's not possible
       return 0;
 
@@ -240,64 +243,14 @@ public class KnightBoard {
 
     board[row][col] = moveNumber;
 
-    ArrayList<int[]> moves = new ArrayList<int[]>();
-    if (row + 1 < m_rows && col + 2 < m_cols) {
-      int[] arr = {1, 2, outgoingMoves[row + 1][col + 2]};
-      moves.add(arr);
-    }
-
-    if (row + 1 < m_rows && col - 2 >= 0) {
-      int[] arr = {1, -2, outgoingMoves[row + 1][col - 2]};
-      moves.add(arr);
-    }
-
-    if (row - 1 >= 0 && col + 2 < m_cols) {
-      int[] arr = {-1, 2, outgoingMoves[row - 1][col + 2]};
-      moves.add(arr);
-    }
-
-    if (row - 1 >= 0 && col - 2 >= 0) {
-      int[] arr = {-1, -2, outgoingMoves[row - 1][col - 2]};
-      moves.add(arr);
-    }
-
-    if (row + 2 < m_rows && col + 1 < m_cols) {
-      int[] arr = {2, 1, outgoingMoves[row + 2][col + 1]};
-      moves.add(arr);
-    }
-
-    if (row + 2 < m_rows && col - 1 >= 0) {
-      int[] arr = {2, -1, outgoingMoves[row + 2][col - 1]};
-      moves.add(arr);
-    }
-
-    if (row - 2 >= 0 && col + 1 < m_cols) {
-      int[] arr = {-2, 1, outgoingMoves[row - 2][col + 1]};
-      moves.add(arr);
-    }
-
-    if (row - 2 >= 0 && col - 1 >= 0) {
-      int[] arr = {-2, -1, outgoingMoves[row - 2][col - 1]};
-      moves.add(arr);
-    }
-
-    Collections.sort(moves, new Comparator<int[]>() {
-      public int compare(int[] a, int[] b) {
-        if (a[2] > b[2])
-          return 1;
-
-        return -1;
-      }
-    });
+    int[][] moves = { {1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1} };
 
     int count = 0;
-    for (int i = 0; i < moves.size(); ++i) {
-      --outgoingMoves[row][col];
-      count += cSolutionsH(row + moves.get(i)[0], col + moves.get(i)[1], moveNumber + 1);
-    }
+    for (int i = 0; i < 8; ++i)
+      count += cSolutionsH(row + moves[i][0], col + moves[i][1], moveNumber + 1);
 
     board[row][col] = 0; //remove knight and try a new location because the entire 8 directions were tried in the for loop and didn't work
 
-    return count;
+return count;
   }
 }
