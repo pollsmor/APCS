@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Recursion {
+public class recursion {
   private static double percError(double n, double guess) {
     //guess is the square root while n is the square itself, so I have to square the guess
     return Math.abs((guess * guess - n) / n * 100);
@@ -53,22 +53,16 @@ public class Recursion {
 
     allSumsRec(list, n, 0, 0); //run void recursive function, won't exit it until recursion is done
 
-    ArrayList<Integer> listOutput = new ArrayList<Integer>();
-    for (int i = 0; i < list.size(); ++i)
-      if (!listOutput.contains(list.get(i)))
-        listOutput.add(list.get(i));
-
     return list;
   }
 
   private static void allSumsRec(ArrayList<Integer> list, int n, int current, int sum) {
     if (current > n)
-      return;
-
-    else if (current != 0) //Why this? Because I don't want to add the initial sum I set in makeAllSums which is 0
       list.add(sum);
 
-    allSumsRec(list, n, current + 1, sum + current + 1);
-    allSumsRec(list, n, current + 1, sum);
+    else {
+      allSumsRec(list, n, current + 1, sum + current);
+      allSumsRec(list, n, current + 1, sum);
+    }
   }
 }
