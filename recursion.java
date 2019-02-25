@@ -53,7 +53,12 @@ public class recursion {
 
     allSumsRec(list, n, 0, 0); //run void recursive function, won't exit it until recursion is done
 
-    return list;
+    //For some reasons the answers are returned twice. Just halving the array
+    ArrayList<Integer> output = new ArrayList<Integer>();
+    for (int i = 0; i < list.size() / 2; ++i)
+      output.add(list.get(i));
+
+    return output;
   }
 
   private static void allSumsRec(ArrayList<Integer> list, int n, int current, int sum) {
