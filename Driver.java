@@ -15,7 +15,7 @@ public class Driver {
     }
 
     catch (FileNotFoundException e) {
-
+      System.out.println("Invalid file specified.");
     }
   }
 }
