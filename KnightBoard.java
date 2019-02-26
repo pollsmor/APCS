@@ -141,6 +141,11 @@ public class KnightBoard {
   }
 
   private boolean solveH(int row, int col, int moveNumber) {
+    if (outgoingMoves[row][col] <= 0)
+      return false;
+
+    --outgoingMoves[row][col];
+
     if (board[row][col] != 0) //if a move backtracks, it's not possible
       return false;
 
@@ -202,14 +207,13 @@ public class KnightBoard {
     });
 
     for (int i = 0; i < moves.size(); ++i) {
-      --outgoingMoves[row][col];
-
       if (solveH(row + moves.get(i)[0], col + moves.get(i)[1], moveNumber + 1))
         return true;
     }
 
     board[row][col] = 0; //remove knight and try a new location because the entire 8 directions were tried in the for loop and didn't work
 
+    ++outgoingMoves[row][col]; //add the move back since the solution can't be found on this path
     return false; //no solution on this path
   }
 
