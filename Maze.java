@@ -32,6 +32,22 @@ public class Maze {
     }
   }
 
+  public boolean isValidMaze() {
+    int eCount = 0;
+    int sCount = 0;
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < cols; ++j) {
+        if (maze[i][j] == 'E')
+          ++eCount;
+
+        if (maze[i][j] == 'S')
+          ++sCount;
+      }
+    }
+
+    return eCount == 1 && sCount == 1;
+  }
+
   public String toString() {
     String output = "";
 
