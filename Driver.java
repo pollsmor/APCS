@@ -18,13 +18,12 @@ public class Driver {
       //cols in maze
       int cols = inf.nextLine().length();
 
-      char[][] maze = new char[rows][cols];
+      char[][] mazeEls = new char[rows][cols];
       for (int i = 0; i < rows; ++i)
         for (int j = 0; j < cols; ++j)
-          maze[i][j] = inf.next().charAt(0);
+          mazeEls[i][j] = inf.next().charAt(0);
 
     }
-
 
     catch (FileNotFoundException e) {
       System.out.println("Invalid file specified.");
