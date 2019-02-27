@@ -8,4 +8,17 @@ public class Maze {
     rows = maze.length;
     cols = maze[0].length;
   }
+
+  public String toString() {
+    String output = "";
+
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < cols; ++i)
+        output += maze[i][j] + " ";
+
+      output += '\n';
+    }
+
+    return output;
+  }
 }
