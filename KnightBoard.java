@@ -147,12 +147,6 @@ public class KnightBoard {
     if (moveNumber >= m_rows * m_cols) //Every moveNumber has been reached, done
       return true;
 
-    //This branch won't work since the is invalid
-    if (outgoingMoves[row][col] <= 0)
-      return false;
-
-    --outgoingMoves[row][col];
-
     board[row][col] = moveNumber;
 
     //Make list of possible moves along with how many outgoing moves there are, for optimization
@@ -208,13 +202,14 @@ public class KnightBoard {
     });
 
     for (int i = 0; i < moves.size(); ++i) {
+      --outgoingMoves[row][col];
+
       if (solveH(row + moves.get(i)[0], col + moves.get(i)[1], moveNumber + 1))
         return true;
     }
 
     board[row][col] = 0; //remove knight and try a new location because the entire 8 directions were tried in the for loop and didn't work
 
-    ++outgoingMoves[row][col]; //add the move back since the solution can't be found on this path
     return false; //no solution on this path
   }
 
