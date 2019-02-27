@@ -8,6 +8,9 @@ public class Maze {
   private int cols;
 
   public Maze(String fileName) throws FileNotFoundException {
+    if (!isValidMaze())
+      throw new IllegalStateException("Invalid maze. There must only be one E and one S.");
+
     File f = new File(fileName);
 
     //rows in maze
