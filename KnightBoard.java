@@ -141,16 +141,17 @@ public class KnightBoard {
   }
 
   private boolean solveH(int row, int col, int moveNumber) {
-    if (outgoingMoves[row][col] <= 0)
-      return false;
-
-    --outgoingMoves[row][col];
-
     if (board[row][col] != 0) //if a move backtracks, it's not possible
       return false;
 
     if (moveNumber >= m_rows * m_cols) //Every moveNumber has been reached, done
       return true;
+
+    //This branch won't work since the is invalid
+    if (outgoingMoves[row][col] <= 0)
+      return false;
+
+    --outgoingMoves[row][col];
 
     board[row][col] = moveNumber;
 
