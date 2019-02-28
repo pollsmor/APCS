@@ -82,4 +82,27 @@ public class Maze {
 
     return output;
   }
+
+  public int solve() {
+    int sRow = 0;
+    int sCol = 0;
+
+    //Find S's row and column
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < cols; ++j) {
+        if (maze[i][j] == 'S') {
+          sRow = i;
+          sCol = j;
+        }
+      }
+    }
+
+    maze[sRow][sCol] = ' ';
+
+    return solve(sRow, sCol);
+  }
+
+  private int solve(int row, int col) {
+    return -1; //so it compiles
+  }
 }

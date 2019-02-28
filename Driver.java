@@ -3,14 +3,22 @@ import java.util.*;
 
 public class Driver {
   public static void main(String[] args) {
+    if (args.length < 1) {
+      System.out.println("Please provide a maze file.");
+      System.exit(0);
+    }
+
+    String fileName = args[0];
+
     try {
-      String fileName = "data1.dat";
       Maze maze = new Maze(fileName);
+
+      
       System.out.println(maze);
     }
 
     catch (FileNotFoundException e) {
-      System.out.println("No file specified.");
+      System.out.println("Invalid filename: " + fileName);
     }
   }
 }
