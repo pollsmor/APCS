@@ -35,7 +35,26 @@ public class Maze {
       throw new IllegalStateException("Invalid maze. There must only be one E and one S.");
   }
 
-  public boolean isValidMaze() {
+  private void wait(int millis) {
+    try {
+      Thread.sleep(millis);
+    }
+
+    catch (InterruptedException e) {
+
+    }
+  }
+
+  public void setAnimate(boolean b) {
+    animate = b;
+  }
+
+  public void clearTerminal() {
+    //erase terminal, go to top left of screen
+    System.out.println("\033[2J\033[1;1H");
+  }
+
+  private boolean isValidMaze() {
     int eCount = 0;
     int sCount = 0;
     for (int i = 0; i < rows; ++i) {
