@@ -13,7 +13,8 @@ public class Driver {
     try {
       Maze maze = new Maze(fileName);
 
-      
+      maze.setAnimate(true);
+      maze.solve();
       System.out.println(maze);
     }
 
