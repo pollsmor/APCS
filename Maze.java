@@ -6,6 +6,7 @@ public class Maze {
   private boolean animate = false; //by default
   private int rows = 0;
   private int cols;
+  private int ats = 0;
 
   public Maze(String fileName) throws FileNotFoundException {
     File f = new File(fileName);
@@ -99,29 +100,31 @@ public class Maze {
 
     maze[sRow][sCol] = ' ';
 
-    return solve(sRow, sCol);
+    if (solve(sRow, sCol))
+      return ats;
+
+    return -1; //no solution
   }
 
-  private int countAts() {
-    int atCount = 0;
-
-    for (int i = 0; i < rows; ++i) {
-      for (int j = 0; j < cols; ++j) {
-        if (maze[i][j] == '@')
-          ++atCount;
-      }
-    }
-
-    return atCount;
-  }
-
-  private int solve(int row, int col) {
+  private boolean solve(int row, int col) {
     if (animate) {
       clearTerminal();
       System.out.println(this);
       wait(20);
     }
 
-    return -1; //so it compiles
+    if (maze[row][col] == '#' || maze[row][col] == '.' || maze[row][col] == '@')
+      return false;
+
+    if (maze[row][col] == 'E')
+      return true;
+
+    int[][] moves = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+    for (int i = 0; i < moves.length; ++i) {
+      return solve(row + moves[i][0], col + moves[i][1]);
+    }
+
+    return false; //so it compiles
   }
 }
