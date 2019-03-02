@@ -84,18 +84,6 @@ public class Maze {
     return output;
   }
 
-  private int countAts() {
-    int count = 0;
-    for (int i = 0; i < rows; ++i) {
-      for (int j = 0; j < cols; ++j) {
-        if (maze[i][j] == '@')
-          ++count;
-      }
-    }
-
-    return count;
-  }
-
   public int solve() {
     int sRow = 0;
     int sCol = 0;
@@ -123,19 +111,24 @@ public class Maze {
     }
 
     if (maze[row][col] == 'E')
-      return countAts();
+      return 0;
 
     if (maze[row][col] != ' ')
       return -1;
 
     maze[row][col] = '@';
 
+    int steps = 0;
     for (int i = 0; i < moves.length; ++i) {
-      return solve(row + moves[i][0], col + moves[i][1]);
+      if (maze[row][col] == 'E')
+        return steps;
+
+      else
+        steps += solve(row + moves[i][0], col + moves[i][1]);
     }
 
     maze[row][col] = '.';
 
-    return -1; //so it compiles
+    return steps;
   }
 }
