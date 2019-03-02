@@ -110,25 +110,37 @@ public class Maze {
       wait(20);
     }
 
+    //Initial check (if you're standing on the solution)
     if (maze[row][col] == 'E')
       return 0;
 
-    if (maze[row][col] != ' ')
+    if (maze[row][col] != ' ') //backtrack (remove 1 step)
       return -1;
 
     maze[row][col] = '@';
 
-    int steps = 0;
+    int steps;
     for (int i = 0; i < moves.length; ++i) {
-      if (maze[row][col] == 'E')
+      steps = solve(row + moves[i][0], col + moves[i][1]);
+      if (steps != -1) //solution found
         return steps;
-
-      else
-        steps += solve(row + moves[i][0], col + moves[i][1]);
     }
 
     maze[row][col] = '.';
+    return -1; //so it complies
+  }
 
-    return steps;
+  public int countAts() {
+    int count = 0;
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < cols; ++j) {
+        if (maze[i][j] == '@')
+          ++count;
+      }
+    }
+
+    ++count; //since the E is also part of the solution
+
+    return count;
   }
 }
