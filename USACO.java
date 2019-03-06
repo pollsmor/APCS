@@ -12,15 +12,39 @@ public class USACO {
     int finalEl = Integer.parseInt(firstRow.next());
     int instructions = Integer.parseInt(firstRow.next());
 
-    System.out.println(rows);
-    System.out.println(cols);
-    System.out.println(finalEl);
-    System.out.println(instructions);
+    //Get data for the elevations of the map and the instructions
+    int i = 1;
+    Scanner inf = new Scanner(f);
+    inf.nextLine(); //skip the first line of data since we got it already
+    int[][] lake = new int[rows][cols];
+    while (inf.hasNextLine()) {
+      if (i >= 1 && i <= rows) {
+        String line = inf.nextLine();
+        for (int col = 0; col < cols; ++col) {
+          lake[i - 1][col] = line.charAt(col);
+        }
+      }
+
+      ++i;
+    }
 
     return 1;
   }
 
   public static int silver(String fileName) {
     return 1;
+  }
+
+  public static String printArr(int[][] arr) {
+    String output = "";
+    for (int i = 0; i < arr.length; ++i) {
+      for (int j = 0; j < arr[0].length; ++j) {
+        output += arr[i][j] + " ";
+      }
+
+      output += '\n';
+    }
+
+    return output;
   }
 }
