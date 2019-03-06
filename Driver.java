@@ -8,6 +8,14 @@ public class Driver {
       System.exit(0);
     }
 
+    String fileName = args[0];
 
+    try {
+      System.out.println(USACO.bronze(fileName));
+    }
+
+    catch (FileNotFoundException e) {
+      System.out.println("Invalid file provided.");
+    }
   }
 }
