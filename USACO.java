@@ -38,10 +38,17 @@ public class USACO {
       ++i;
     }
 
-    System.out.println(printArr(lake));
-    System.out.println(printArr(instructions));
+    for (int j = 0; j < instructions.length; ++j) {
+
+    }
 
     return 1;
+  }
+
+  private static void stomp(int[] instruction, int[][] lake) {
+    int row = instruction[0];
+    int col = instruction[1];
+    int stompAmt = instruction[2];
   }
 
   public static int silver(String fileName) {
