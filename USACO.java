@@ -22,8 +22,9 @@ public class USACO {
     while (inf.hasNextLine()) {
       if (i >= 1 && i <= rows) {
         String line = inf.nextLine();
+        String[] arr = line.split(" ");
         for (int col = 0; col < cols; ++col) {
-          lake[i - 1][col] = line.charAt(col);
+          lake[i - 1][col] = Integer.parseInt(arr[col]);
         }
       }
 
@@ -39,16 +40,56 @@ public class USACO {
     }
 
     for (int j = 0; j < instructions.length; ++j) {
-
+      stomp(instructions[j], lake, rows, cols);
     }
 
     return 1;
   }
 
-  private static void stomp(int[] instruction, int[][] lake) {
+  private static void stomp(int[] instruction, int[][] lake, int rows, int cols) {
     int row = instruction[0];
     int col = instruction[1];
     int stompAmt = instruction[2];
+
+    //Find the max height to stomp down
+    int maxHeight = 0;
+    if (row - 1 >= 0 && col - 1 >= 0) //top left
+      if (lake[row - 1][col - 1] > maxHeight)
+        maxHeight = lake[row - 1][col - 1];
+
+    if (row - 1 >= 0) //top
+      if (lake[row - 1][col] > maxHeight)
+        maxHeight = lake[row - 1][col];
+
+    if (row - 1 >= 0 && col + 1 < cols) //top right
+      if (lake[row - 1][col - 1] > maxHeight)
+        maxHeight = lake[row - 1][col + 1];
+
+    if (col - 1 >= 0) //left
+      if (lake[row][col - 1] > maxHeight)
+        maxHeight = lake[row][col - 1];
+
+    if (lake[row][col] > maxHeight) //middle
+      maxHeight = lake[row][col];
+
+    if (col + 1 < cols) //right
+      if (lake[row][col + 1] > maxHeight)
+        maxHeight = lake[row][col + 1];
+
+    if (row + 1 < rows && col - 1 >= 0) //bottom left
+      if (lake[row + 1][col - 1] > maxHeight)
+        maxHeight = lake[row + 1][col - 1];
+
+    if (row + 1 < rows) //bottom
+      if (lake[row + 1][col] > maxHeight)
+        maxHeight = lake[row + 1][col];
+
+    if (row + 1 < rows && col + 1 < cols) //bottom
+      if (lake[row + 1][col + 1] > maxHeight)
+        maxHeight = lake[row + 1][col + 1];
+
+    System.out.println(printArr(lake));
+    System.out.println(maxHeight);
   }
 
   public static int silver(String fileName) {
