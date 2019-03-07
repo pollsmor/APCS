@@ -53,7 +53,36 @@ public class USACO {
 
     //Find the max height to stomp down
     int maxHeight = findMaxHeight(instruction, lake, rows, cols);
-    System.out.println(maxHeight);
+    int heightAfterStomp = maxHeight - stompAmt;
+    if (heightAfterStomp < 0) //just in case
+      heightAfterStomp = 0;
+
+    if (row - 1 >= 0 && col - 1 >= 0) //top left
+      lake[row - 1][col - 1] = heightAfterStomp;
+
+    if (row - 1 >= 0) //top
+      lake[row - 1][col] = heightAfterStomp;
+
+    if (row - 1 >= 0 && col + 1 < cols) //top right
+      lake[row - 1][col + 1] = heightAfterStomp;
+
+    if (col - 1 >= 0) //left
+      lake[row][col - 1] = heightAfterStomp;
+
+    if (lake[row][col] > maxHeight) //middle
+      lake[row][col] = heightAfterStomp;
+
+    if (col + 1 < cols) //right
+      lake[row][col + 1] = heightAfterStomp;
+
+    if (row + 1 < rows && col - 1 >= 0) //bottom left
+      lake[row + 1][col - 1] = heightAfterStomp;
+
+    if (row + 1 < rows) //bottom
+      lake[row - 1][col] = heightAfterStomp;
+
+    if (row + 1 < rows && col + 1 < cols) //bottom right
+      lake[row + 1][col + 1] = heightAfterStomp;
   }
 
   //Find the max height to stomp down
@@ -94,7 +123,7 @@ public class USACO {
       if (lake[row + 1][col] > maxHeight)
         maxHeight = lake[row + 1][col];
 
-    if (row + 1 < rows && col + 1 < cols) //bottom
+    if (row + 1 < rows && col + 1 < cols) //bottom right
       if (lake[row + 1][col + 1] > maxHeight)
         maxHeight = lake[row + 1][col + 1];
 
