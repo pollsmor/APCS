@@ -52,6 +52,16 @@ public class USACO {
     int stompAmt = instruction[2];
 
     //Find the max height to stomp down
+    int maxHeight = findMaxHeight(instruction, lake, rows, cols);
+    System.out.println(maxHeight);
+  }
+
+  //Find the max height to stomp down
+  private static int findMaxHeight(int[] instruction, int[][] lake, int rows, int cols) {
+    int row = instruction[0];
+    int col = instruction[1];
+    int stompAmt = instruction[2];
+
     int maxHeight = 0;
     if (row - 1 >= 0 && col - 1 >= 0) //top left
       if (lake[row - 1][col - 1] > maxHeight)
@@ -88,8 +98,7 @@ public class USACO {
       if (lake[row + 1][col + 1] > maxHeight)
         maxHeight = lake[row + 1][col + 1];
 
-    System.out.println(printArr(lake));
-    System.out.println(maxHeight);
+    return maxHeight;
   }
 
   public static int silver(String fileName) {
