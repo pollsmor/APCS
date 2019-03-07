@@ -29,8 +29,9 @@ public class USACO {
 
       else if (i > rows && i <= rows + instructionAmt) {
         String line = inf.nextLine();
+        String[] arr = line.split(" ");
         for (int col = 0; col < 3; ++col) {
-          instructions[i - rows - 1][col] = line.charAt(col);
+          instructions[i - rows - 1][col] = Integer.parseInt(arr[col]);
         }
       }
 
@@ -38,6 +39,7 @@ public class USACO {
     }
 
     System.out.println(printArr(lake));
+    System.out.println(printArr(instructions));
 
     return 1;
   }
@@ -46,7 +48,7 @@ public class USACO {
     return 1;
   }
 
-  public static String printArr(int[][] arr) {
+  private static String printArr(int[][] arr) {
     String output = "";
     for (int i = 0; i < arr.length; ++i) {
       for (int j = 0; j < arr[0].length; ++j) {
