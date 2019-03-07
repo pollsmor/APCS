@@ -62,7 +62,7 @@ public class USACO {
         maxHeight = lake[row - 1][col];
 
     if (row - 1 >= 0 && col + 1 < cols) //top right
-      if (lake[row - 1][col - 1] > maxHeight)
+      if (lake[row - 1][col + 1] > maxHeight)
         maxHeight = lake[row - 1][col + 1];
 
     if (col - 1 >= 0) //left
