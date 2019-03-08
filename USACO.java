@@ -38,25 +38,50 @@ public class USACO {
       ++i;
     }
 
-    for (int j = 0; j < 1; ++j) {
-      stomp(instructions[j], lake, rows, cols);
+    for (int j = 0; j < instructions.length; ++j) {
+      stomp(instructions[j], lake);
     }
 
-    System.out.println(printArr(lake));
-    return 1;
+    //Find the actual water levels
+    int[][] waterLevel = new int[rows][cols];
+    for (int k = 0; k < rows; ++k) {
+      for (int m = 0; m < cols; ++m) {
+        if (lake[k][m] >= finalEl)
+          waterLevel[k][m] = 0;
+
+        else
+          waterLevel[k][m] = finalEl - lake[k][m];
+      }
+    }
+
+    return findTotalWaterDepth(waterLevel) * 72 * 72;
   }
 
-  private static void stomp(int[] instruction, int[][] lake, int rows, int cols) {
+  private static int findTotalWaterDepth(int[][] waterLevel) {
+    int rows = waterLevel.length;
+    int cols = waterLevel[0].length;
+    int depth = 0;
+
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < cols; ++j) {
+        depth += waterLevel[i][j];
+      }
+    }
+
+    return depth;
+  }
+
+  private static void stomp(int[] instruction, int[][] lake) {
     int row = instruction[0];
     int col = instruction[1];
     int stompAmt = instruction[2];
+    int rows = lake.length;
+    int cols = lake[0].length;
 
     //Find the max height to stomp down
     int maxHeight = findMaxHeight(instruction, lake, rows, cols);
     int heightAfterStomp = maxHeight - stompAmt;
-    System.out.println(row);
-    System.out.println(col);
-    System.out.println(stompAmt);
+
     if (heightAfterStomp < 0) //just in case
       heightAfterStomp = 0;
 
