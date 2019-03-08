@@ -20,8 +20,8 @@ public class USACO {
     int[][] instructions = new int[instructionAmt][3];
 
     while (inf.hasNextLine()) {
+      String line = inf.nextLine();
       if (i >= 1 && i <= rows) {
-        String line = inf.nextLine();
         String[] arr = line.split(" ");
         for (int col = 0; col < cols; ++col) {
           lake[i - 1][col] = Integer.parseInt(arr[col]);
@@ -29,7 +29,6 @@ public class USACO {
       }
 
       else if (i > rows && i <= rows + instructionAmt) {
-        String line = inf.nextLine();
         String[] arr = line.split(" ");
         for (int col = 0; col < 3; ++col) {
           instructions[i - rows - 1][col] = Integer.parseInt(arr[col]);
@@ -39,10 +38,11 @@ public class USACO {
       ++i;
     }
 
-    for (int j = 0; j < instructions.length; ++j) {
+    for (int j = 0; j < 1; ++j) {
       stomp(instructions[j], lake, rows, cols);
     }
 
+    System.out.println(printArr(lake));
     return 1;
   }
 
@@ -54,35 +54,46 @@ public class USACO {
     //Find the max height to stomp down
     int maxHeight = findMaxHeight(instruction, lake, rows, cols);
     int heightAfterStomp = maxHeight - stompAmt;
+    System.out.println(row);
+    System.out.println(col);
+    System.out.println(stompAmt);
     if (heightAfterStomp < 0) //just in case
       heightAfterStomp = 0;
 
     if (row - 1 >= 0 && col - 1 >= 0) //top left
-      lake[row - 1][col - 1] = heightAfterStomp;
+      if (lake[row - 1][col - 1] > heightAfterStomp)
+        lake[row - 1][col - 1] = heightAfterStomp;
 
     if (row - 1 >= 0) //top
-      lake[row - 1][col] = heightAfterStomp;
+      if (lake[row - 1][col] > heightAfterStomp)
+        lake[row - 1][col] = heightAfterStomp;
 
     if (row - 1 >= 0 && col + 1 < cols) //top right
-      lake[row - 1][col + 1] = heightAfterStomp;
+      if (lake[row - 1][col + 1] > heightAfterStomp)
+        lake[row - 1][col + 1] = heightAfterStomp;
 
     if (col - 1 >= 0) //left
-      lake[row][col - 1] = heightAfterStomp;
+      if (lake[row][col - 1] > heightAfterStomp)
+        lake[row][col - 1] = heightAfterStomp;
 
-    if (lake[row][col] > maxHeight) //middle
+    if (lake[row][col] > heightAfterStomp)
       lake[row][col] = heightAfterStomp;
 
     if (col + 1 < cols) //right
-      lake[row][col + 1] = heightAfterStomp;
+      if (lake[row][col + 1] > heightAfterStomp)
+        lake[row][col + 1] = heightAfterStomp;
 
     if (row + 1 < rows && col - 1 >= 0) //bottom left
-      lake[row + 1][col - 1] = heightAfterStomp;
+      if (lake[row + 1][col - 1] > heightAfterStomp)
+        lake[row + 1][col - 1] = heightAfterStomp;
 
     if (row + 1 < rows) //bottom
-      lake[row - 1][col] = heightAfterStomp;
+      if (lake[row + 1][col] > heightAfterStomp)
+        lake[row + 1][col] = heightAfterStomp;
 
     if (row + 1 < rows && col + 1 < cols) //bottom right
-      lake[row + 1][col + 1] = heightAfterStomp;
+      if (lake[row + 1][col + 1] > heightAfterStomp)
+        lake[row + 1][col + 1] = heightAfterStomp;
   }
 
   //Find the max height to stomp down
