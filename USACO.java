@@ -197,6 +197,12 @@ public class USACO {
         endY = Integer.parseInt(arr[3]);
       }
 
+      else {
+        for (int j = 0; j < cols; ++j) {
+          map[i - 1][j] = line.charAt(j);
+        }
+      }
+
       ++i;
     }
 
@@ -204,11 +210,25 @@ public class USACO {
     System.out.println(startY);
     System.out.println(endX);
     System.out.println(endY);
+    System.out.println(printCharArr(map));
 
     return 1;
   }
 
   private static String printArr(int[][] arr) {
+    String output = "";
+    for (int i = 0; i < arr.length; ++i) {
+      for (int j = 0; j < arr[0].length; ++j) {
+        output += arr[i][j] + " ";
+      }
+
+      output += '\n';
+    }
+
+    return output;
+  }
+
+  private static String printCharArr(char[][] arr) {
     String output = "";
     for (int i = 0; i < arr.length; ++i) {
       for (int j = 0; j < arr[0].length; ++j) {
