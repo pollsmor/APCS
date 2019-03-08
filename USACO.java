@@ -166,7 +166,45 @@ public class USACO {
     return maxHeight;
   }
 
-  public static int silver(String fileName) {
+  //___________________________________________________________________________
+
+  public static int silver(String fileName) throws FileNotFoundException {
+    File f = new File(fileName);
+
+    //Get data from the first line of input
+    Scanner firstRow = new Scanner(f);
+    int rows = Integer.parseInt(firstRow.next());
+    int cols = Integer.parseInt(firstRow.next());
+    int seconds = Integer.parseInt(firstRow.next());
+
+    //Get data for the layout of the map and the start/end point
+    int i = 1;
+    Scanner inf = new Scanner(f);
+    inf.nextLine(); //skip the first line of data since we got it already
+    char[][] map = new char[rows][cols];
+    int startX = 0;
+    int startY = 0;
+    int endX = 0;
+    int endY = 0;
+
+    while (inf.hasNextLine()) {
+      String line = inf.nextLine();
+      if (i == rows + 1) {
+        String[] arr = line.split(" ");
+        startX = Integer.parseInt(arr[0]);
+        startY = Integer.parseInt(arr[1]);
+        endX = Integer.parseInt(arr[2]);
+        endY = Integer.parseInt(arr[3]);
+      }
+
+      ++i;
+    }
+
+    System.out.println(startX);
+    System.out.println(startY);
+    System.out.println(endX);
+    System.out.println(endY);
+
     return 1;
   }
 

@@ -11,7 +11,7 @@ public class Driver {
     String fileName = args[0];
 
     try {
-      System.out.println(USACO.bronze(fileName));
+      System.out.println(USACO.silver(fileName));
     }
 
     catch (FileNotFoundException e) {
