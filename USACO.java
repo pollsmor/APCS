@@ -232,6 +232,7 @@ public class USACO {
           newMap[row][col] = -1;
 
         else {
+          //algorithm: the amount of ways to reach a board in t seconds is the sum of the amount of ways to reach its neighbors in t - 1 seconds
           int sumOfNeighbors = 0;
           for (int i = 0; i < moves.length; ++i)
             if (!outOfBounds(map, row + moves[i][0], col + moves[i][1]))
@@ -246,9 +247,11 @@ public class USACO {
   }
 
   private static boolean outOfBounds(int[][] map, int row, int col) {
+    //Last condition checks for trees; that is out of bounds as well
     return row < 0 || row >= map.length || col < 0 || col >= map[0].length || map[row][col] == -1;
   }
 
+  //For debugging, somehow forgot Arrays.deepToString() is a thing
   private static String printArr(int[][] arr) {
     String output = "";
     for (int i = 0; i < arr.length; ++i) {
