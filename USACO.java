@@ -216,6 +216,10 @@ public class USACO {
     return 1;
   }
 
+  private static boolean outOfBounds(int[][] map, int row, int col) {
+    return row < 0 || row >= map.length || col < 0 || col >= map[0].length || map[row][col] == -1;
+  }
+
   private static String printArr(int[][] arr) {
     String output = "";
     for (int i = 0; i < arr.length; ++i) {
