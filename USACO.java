@@ -181,12 +181,13 @@ public class USACO {
     int i = 1;
     Scanner inf = new Scanner(f);
     inf.nextLine(); //skip the first line of data since we got it already
-    int[][] map = new int[rows][cols];
+    int[][] map = new int[rows][cols]; //initialize everything to 0
     int r1 = 0;
     int c1 = 0;
     int r2 = 0;
     int c2 = 0;
 
+    //Obtain the map and the start/end coords
     while (inf.hasNextLine()) {
       String line = inf.nextLine();
       if (i == rows + 1) {
@@ -200,29 +201,34 @@ public class USACO {
       else {
         for (int j = 0; j < cols; ++j)
           if (line.charAt(j) == '*')
-            map[i - 1][j] = -1;
+            map[i - 1][j] = -1; //convert trees to -1 for easier manipulation
       }
 
       ++i;
     }
 
-    map[r1][c1] = 1; //1 way to reach the origin with 0 moves
-    //How many seconds go by
-    for (int t = 0; t < seconds; ++t)
-      map = moveOneSecond(map);
+    //Hardcoded case for if the starting point is the endpoint and you don't move
+    if (r1 == r2 && c1 == c2 && seconds == 0)
+      return 1;
 
-    return map[r2][c2];
+    map[r1][c1] = 1; //1 way to reach the origin in 0 seconds
+    //How many seconds go by
+    for (int t = 0; t < seconds; ++t) {
+      map = moveOneSecond(map);
+    }
+
+    return map[r2][c2]; //return the amount of ways to the endpoint in t seconds
   }
 
   private static int[][] moveOneSecond(int[][] map) {
     int rows = map.length;
     int cols = map[0].length;
-    int[][] newMap = new int[rows][cols];
+    int[][] newMap = new int[rows][cols]; //will replace the original map 1 second ago
     int[][] moves = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; //down, up, right, left
 
     for (int row = 0; row < rows; ++row) {
       for (int col = 0; col < cols; ++col) {
-        if (map[row][col] == -1)
+        if (map[row][col] == -1) //checks for trees
           newMap[row][col] = -1;
 
         else {
