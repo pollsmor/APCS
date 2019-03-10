@@ -19,6 +19,7 @@ public class USACO {
     int[][] lake = new int[rows][cols];
     int[][] instructions = new int[instructionAmt][3];
 
+    //Obtain the lake and the instructions
     while (inf.hasNextLine()) {
       String line = inf.nextLine();
       if (i >= 1 && i <= rows) {
@@ -57,6 +58,7 @@ public class USACO {
     return findTotalWaterDepth(waterLevel) * 72 * 72;
   }
 
+  //Aggregates all the water depths for easy calculation
   private static int findTotalWaterDepth(int[][] waterLevel) {
     int rows = waterLevel.length;
     int cols = waterLevel[0].length;
@@ -80,9 +82,9 @@ public class USACO {
 
     //Find the max height to stomp down
     int maxHeight = findMaxHeight(instruction, lake, rows, cols);
-    int heightAfterStomp = maxHeight - stompAmt;
+    int heightAfterStomp = maxHeight - stompAmt; //every plot of land in a 3x3 around the cow will be this height
 
-    if (heightAfterStomp < 0) //just in case
+    if (heightAfterStomp < 0) //Stick with 0 for easier calculations
       heightAfterStomp = 0;
 
     if (row - 1 >= 0 && col - 1 >= 0) //top left
@@ -121,7 +123,7 @@ public class USACO {
         lake[row + 1][col + 1] = heightAfterStomp;
   }
 
-  //Find the max height to stomp down
+  //Find the max height to stomp down since other cows won't start if the others are higher
   private static int findMaxHeight(int[] instruction, int[][] lake, int rows, int cols) {
     int row = instruction[0];
     int col = instruction[1];
