@@ -182,19 +182,19 @@ public class USACO {
     Scanner inf = new Scanner(f);
     inf.nextLine(); //skip the first line of data since we got it already
     int[][] map = new int[rows][cols];
-    int startX = 0;
-    int startY = 0;
-    int endX = 0;
-    int endY = 0;
+    int r1 = 0;
+    int c1 = 0;
+    int r2 = 0;
+    int c2 = 0;
 
     while (inf.hasNextLine()) {
       String line = inf.nextLine();
       if (i == rows + 1) {
         String[] arr = line.split(" ");
-        startX = Integer.parseInt(arr[0]);
-        startY = Integer.parseInt(arr[1]);
-        endX = Integer.parseInt(arr[2]);
-        endY = Integer.parseInt(arr[3]);
+        r1 = Integer.parseInt(arr[0]) - 1;
+        c1 = Integer.parseInt(arr[1]) - 1;
+        r2 = Integer.parseInt(arr[2]) - 1;
+        c2 = Integer.parseInt(arr[3]) - 1;
       }
 
       else {
@@ -206,14 +206,37 @@ public class USACO {
       ++i;
     }
 
-    System.out.println(printArr(map));
-    int possibleWays = 0;
-    int[][] moves = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; //down, up, right, left
-    for (int movesLeft = seconds; movesLeft > 0; --movesLeft) {
+    map[r1][c1] = 1; //1 way to reach the origin with 0 moves
+    //How many seconds go by
+    for (int t = 0; t < seconds; ++t)
+      map = moveOneSecond(map);
 
+    return map[r2][c2];
+  }
+
+  private static int[][] moveOneSecond(int[][] map) {
+    int rows = map.length;
+    int cols = map[0].length;
+    int[][] newMap = new int[rows][cols];
+    int[][] moves = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; //down, up, right, left
+
+    for (int row = 0; row < rows; ++row) {
+      for (int col = 0; col < cols; ++col) {
+        if (map[row][col] == -1)
+          newMap[row][col] = -1;
+
+        else {
+          int sumOfNeighbors = 0;
+          for (int i = 0; i < moves.length; ++i)
+            if (!outOfBounds(map, row + moves[i][0], col + moves[i][1]))
+              sumOfNeighbors += map[row + moves[i][0]][col + moves[i][1]];
+
+          newMap[row][col] = sumOfNeighbors;
+        }
+      }
     }
 
-    return 1;
+    return newMap;
   }
 
   private static boolean outOfBounds(int[][] map, int row, int col) {
