@@ -181,7 +181,7 @@ public class USACO {
     int i = 1;
     Scanner inf = new Scanner(f);
     inf.nextLine(); //skip the first line of data since we got it already
-    char[][] map = new char[rows][cols];
+    int[][] map = new int[rows][cols];
     int startX = 0;
     int startY = 0;
     int endX = 0;
@@ -198,37 +198,25 @@ public class USACO {
       }
 
       else {
-        for (int j = 0; j < cols; ++j) {
-          map[i - 1][j] = line.charAt(j);
-        }
+        for (int j = 0; j < cols; ++j)
+          if (line.charAt(j) == '*')
+            map[i - 1][j] = -1;
       }
 
       ++i;
     }
 
-    System.out.println(startX);
-    System.out.println(startY);
-    System.out.println(endX);
-    System.out.println(endY);
-    System.out.println(printCharArr(map));
+    System.out.println(printArr(map));
+    int possibleWays = 0;
+    int[][] moves = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; //down, up, right, left
+    for (int movesLeft = seconds; movesLeft > 0; --movesLeft) {
+
+    }
 
     return 1;
   }
 
   private static String printArr(int[][] arr) {
-    String output = "";
-    for (int i = 0; i < arr.length; ++i) {
-      for (int j = 0; j < arr[0].length; ++j) {
-        output += arr[i][j] + " ";
-      }
-
-      output += '\n';
-    }
-
-    return output;
-  }
-
-  private static String printCharArr(char[][] arr) {
     String output = "";
     for (int i = 0; i < arr.length; ++i) {
       for (int j = 0; j < arr[0].length; ++j) {
