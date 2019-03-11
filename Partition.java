@@ -21,11 +21,13 @@ public class Partition {
 
     Random randgen = new Random();
     int pivotIdx = Math.abs(randgen.nextInt() % (end - start + 1));
+    int pivot = toBeSorted[pivotIdx];
+    pivotIdx = 0;
 
-    //Move pivot to index 0 via swapping
-    int temp = toBeSorted[0];
-    toBeSorted[0] = toBeSorted[pivotIdx];
-    toBeSorted[pivotIdx] = temp;
+    for (int i = 0; i < toBeSorted.length; ++i) {
+      if (toBeSorted[i] < pivot)
+        ++pivotIdx;
+    }
 
     System.out.println(pivotIdx);
     System.out.println(Arrays.toString(toBeSorted));
