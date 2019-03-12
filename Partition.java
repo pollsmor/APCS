@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 
 public class Partition {
@@ -6,6 +5,7 @@ public class Partition {
     Random randgen = new Random();
     int pivotIdx = Math.abs(randgen.nextInt() % (end - start + 1)) + start;
     int pivot = data[pivotIdx];
+    System.out.println(pivotIdx);
 
     int i = start;
     int j = end;
@@ -15,9 +15,6 @@ public class Partition {
       swap(data, i, j);
     }
 
-    System.out.println(pivotIdx);
-    System.out.println(Arrays.toString(data));
-    System.out.println(j);
     return j;
   }
 
