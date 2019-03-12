@@ -6,18 +6,18 @@ public class Partition {
     Random randgen = new Random();
     int pivotIdx = Math.abs(randgen.nextInt() % (end - start + 1)) + start;
     int pivot = data[pivotIdx];
-    int temp = data[start];
-    data[start] = pivot;
-    data[pivotIdx] = temp;
 
-    for (int i = start + 1; i <= end; ++i) {
-      if (data[i] < pivot) {
-
-      }
+    int i = start;
+    int j = end;
+    while (i < j) {
+      while (data[i] < pivot) ++i;
+      while (data[j] > pivot) --j;
+      swap(data, i, j);
     }
 
     System.out.println(pivotIdx);
     System.out.println(Arrays.toString(data));
+    System.out.println(j);
     return j;
   }
 
