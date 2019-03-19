@@ -112,7 +112,7 @@ public class Maze {
 
     //Initial check (if you're standing on the solution)
     if (maze[row][col] == 'E')
-      return 0;
+      return countAts();
 
     if (maze[row][col] != ' ') //backtrack (remove 1 step)
       return -1;
@@ -138,8 +138,6 @@ public class Maze {
           ++count;
       }
     }
-
-    ++count; //since the E is also part of the solution
 
     return count;
   }

@@ -14,8 +14,7 @@ public class Driver {
       Maze maze = new Maze(fileName);
 
       maze.setAnimate(true);
-      maze.solve();
-      System.out.println(maze.countAts());
+      System.out.println(maze.solve());
     }
 
     catch (FileNotFoundException e) {
