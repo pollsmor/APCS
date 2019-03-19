@@ -76,7 +76,7 @@ public class Maze {
 
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < cols; ++j)
-        output += maze[i][j] + " ";
+        output += maze[i][j];
 
       output += '\n';
     }
